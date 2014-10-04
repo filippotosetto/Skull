@@ -1,3 +1,0 @@
-ofxAssimpModelLoader
-ofxGui
-ofxFFT-master
