@@ -2,6 +2,14 @@
 
 #include "ofMain.h"
 
+#include "ofxXmlSettings.h"
+#include "ofxGui.h"
+
+#include "ui/Drag.h"
+#include "audio/AudioManager.h"
+#include "scene/SceneManager.h"
+
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -18,5 +26,27 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		void initGUI();
+		void initDrags();
+		void initScenes();
+
+		void updateMesh();
+		void saveSettings();
+
+		ofPoint lerpPoint(ofPoint start, ofPoint end, float amt);
+
+		// mapping
+		ofFbo fbo;
+		ofMaterial material;
+		ofPlanePrimitive plane;
+		vector<Drag> drags;
+
+        // gui
+		ofxPanel gui;
+		ofxToggle drawScenes;
+        ofxToggle drawWireframe;
+        ofxToggle drawDistortion;
+        bool guiVisible = true;
 
 };
