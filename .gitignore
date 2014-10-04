@@ -50,3 +50,7 @@ Main/obj/
 Main/Main.depend
 Main/Main.layout
 Main/icon.rc
+Prototypes/01/obj/
+*.depend
+Prototypes/01/01.layout
+*.rc
