@@ -46,3 +46,7 @@ xcuserdata
 !default.pbxuser
 
 
+Main/obj/
+Main/Main.depend
+Main/Main.layout
+Main/icon.rc
