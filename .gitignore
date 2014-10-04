@@ -1,0 +1,48 @@
+# OS X Junk
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+.DS_Store
+profile
+.svn
+
+
+# XCode
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.perspectivev3
+*.xcodeproj/*.mode1v3
+*.xcodeproj/*.tm_build_errors
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspective 
+*.perspectivev3
+*.pyc 
+*~.nib/
+*/build/*
+
+
+# XC4 #
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+*/UserInterfaceState.xcuserstate
+*/Breakpoints.xcbkptlist
+
+# CocoaPods
+Pods
+
+build/
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+xcuserdata
+*/xcuserdata/*
+.xcodeproj/ 
+
+!*.xcodeproj/project.pbxproj
+!default.pbxuser
+
+
