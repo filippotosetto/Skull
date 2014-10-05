@@ -24,6 +24,9 @@
 		4120367719E084720091CE01 /* ofxFFTFile.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035AF19E05AFB0091CE01 /* ofxFFTFile.h */; };
 		4120367819E084720091CE01 /* ofxFFTLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 412035B019E05AFB0091CE01 /* ofxFFTLive.cpp */; };
 		4120367919E084720091CE01 /* ofxFFTLive.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035B119E05AFB0091CE01 /* ofxFFTLive.h */; };
+		4120367D19E1404C0091CE01 /* ExampleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120367B19E1404C0091CE01 /* ExampleScene.cpp */; };
+		4120368319E141200091CE01 /* ofxTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120368119E141070091CE01 /* ofxTimer.cpp */; };
+		4120368419E141200091CE01 /* ofxTimer.h in Sources */ = {isa = PBXBuildFile; fileRef = 4120368219E141070091CE01 /* ofxTimer.h */; };
 		47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F689F55F2F059DD1E8C3BE6B /* ofxSliderGroup.cpp */; };
 		7D38DC8021C7B4DAF7A69C2D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFF3F06FBE6B0D7CEDDE8FE5 /* ofxButton.cpp */; };
 		92341401421A0B920082DDBD /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF0C9CB00961FB5339CA25E1 /* ofxGuiGroup.cpp */; };
@@ -119,6 +122,10 @@
 		4120366A19E0844C0091CE01 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		4120366C19E0844C0091CE01 /* Drag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drag.cpp; sourceTree = "<group>"; };
 		4120366D19E0844C0091CE01 /* Drag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drag.h; sourceTree = "<group>"; };
+		4120367B19E1404C0091CE01 /* ExampleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExampleScene.cpp; sourceTree = "<group>"; };
+		4120367C19E1404C0091CE01 /* ExampleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleScene.h; sourceTree = "<group>"; };
+		4120368119E141070091CE01 /* ofxTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTimer.cpp; sourceTree = "<group>"; };
+		4120368219E141070091CE01 /* ofxTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTimer.h; sourceTree = "<group>"; };
 		4A44D4483E4370AF91480DFC /* aiScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiScene.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/aiScene.h; sourceTree = SOURCE_ROOT; };
 		4CB11A8DD9233C659BE9FBCD /* ofxAssimpModelLoader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAssimpModelLoader.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.h; sourceTree = SOURCE_ROOT; };
 		4EA376CBE9D34280DBD85E02 /* ofxAssimpModelLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAssimpModelLoader.cpp; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.cpp; sourceTree = SOURCE_ROOT; };
@@ -281,6 +288,7 @@
 		4120366519E0844C0091CE01 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				4120367A19E1404C0091CE01 /* example */,
 				4120366619E0844C0091CE01 /* abstract */,
 				4120366919E0844C0091CE01 /* SceneManager.cpp */,
 				4120366A19E0844C0091CE01 /* SceneManager.h */,
@@ -304,6 +312,33 @@
 				4120366D19E0844C0091CE01 /* Drag.h */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		4120367A19E1404C0091CE01 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				4120367B19E1404C0091CE01 /* ExampleScene.cpp */,
+				4120367C19E1404C0091CE01 /* ExampleScene.h */,
+			);
+			path = example;
+			sourceTree = "<group>";
+		};
+		4120367F19E141070091CE01 /* ofxTimer */ = {
+			isa = PBXGroup;
+			children = (
+				4120368019E141070091CE01 /* src */,
+			);
+			name = ofxTimer;
+			path = ../../../of_v0.8.4_osx_release/addons/ofxTimer;
+			sourceTree = "<group>";
+		};
+		4120368019E141070091CE01 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4120368119E141070091CE01 /* ofxTimer.cpp */,
+				4120368219E141070091CE01 /* ofxTimer.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		480A780D8D0308AE4A368801 /* ofxGui */ = {
@@ -394,6 +429,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				4120367F19E141070091CE01 /* ofxTimer */,
 				4120356F19E05AFA0091CE01 /* ofxFFT */,
 				2C8F245ACBE61E28646C17F2 /* ofxAssimpModelLoader */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
@@ -616,6 +652,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4120368319E141200091CE01 /* ofxTimer.cpp in Sources */,
+				4120368419E141200091CE01 /* ofxTimer.h in Sources */,
 				4120367219E084720091CE01 /* fft.cpp in Sources */,
 				4120367319E084720091CE01 /* fft.h in Sources */,
 				4120367419E084720091CE01 /* ofxFFTBase.cpp in Sources */,
@@ -643,6 +681,7 @@
 				47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */,
 				1D630D2FD3E2F527A7747C00 /* ofxToggle.cpp in Sources */,
 				DB46F954E2510AEEDA6DE642 /* ofxXmlSettings.cpp in Sources */,
+				4120367D19E1404C0091CE01 /* ExampleScene.cpp in Sources */,
 				CF008F95E5B30830F06338DE /* tinyxml.cpp in Sources */,
 				F66D086234C57E4720DA19FF /* tinyxmlerror.cpp in Sources */,
 				31D4524A8044C19E938536A9 /* tinyxmlparser.cpp in Sources */,
