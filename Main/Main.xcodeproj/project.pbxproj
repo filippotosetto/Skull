@@ -12,6 +12,18 @@
 		31D4524A8044C19E938536A9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E154D8D87EFD008B2914EA95 /* tinyxmlparser.cpp */; };
 		3D5B05390E4B441DBA465D48 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 512F85418609E67CFED65748 /* ofxSlider.cpp */; };
 		3E14BA3DC838290F2C4BEEA8 /* ofxAssimpTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AB87434F361927AEEEAB6F1 /* ofxAssimpTexture.cpp */; };
+		4120366E19E0844C0091CE01 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366219E0844C0091CE01 /* AudioManager.cpp */; };
+		4120366F19E0844C0091CE01 /* AbstractScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366719E0844C0091CE01 /* AbstractScene.cpp */; };
+		4120367019E0844C0091CE01 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366919E0844C0091CE01 /* SceneManager.cpp */; };
+		4120367119E0844C0091CE01 /* Drag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366C19E0844C0091CE01 /* Drag.cpp */; };
+		4120367219E084720091CE01 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 412035A719E05AFB0091CE01 /* fft.cpp */; };
+		4120367319E084720091CE01 /* fft.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035A819E05AFB0091CE01 /* fft.h */; };
+		4120367419E084720091CE01 /* ofxFFTBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 412035AC19E05AFB0091CE01 /* ofxFFTBase.cpp */; };
+		4120367519E084720091CE01 /* ofxFFTBase.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035AD19E05AFB0091CE01 /* ofxFFTBase.h */; };
+		4120367619E084720091CE01 /* ofxFFTFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 412035AE19E05AFB0091CE01 /* ofxFFTFile.cpp */; };
+		4120367719E084720091CE01 /* ofxFFTFile.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035AF19E05AFB0091CE01 /* ofxFFTFile.h */; };
+		4120367819E084720091CE01 /* ofxFFTLive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 412035B019E05AFB0091CE01 /* ofxFFTLive.cpp */; };
+		4120367919E084720091CE01 /* ofxFFTLive.h in Sources */ = {isa = PBXBuildFile; fileRef = 412035B119E05AFB0091CE01 /* ofxFFTLive.h */; };
 		47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F689F55F2F059DD1E8C3BE6B /* ofxSliderGroup.cpp */; };
 		7D38DC8021C7B4DAF7A69C2D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFF3F06FBE6B0D7CEDDE8FE5 /* ofxButton.cpp */; };
 		92341401421A0B920082DDBD /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF0C9CB00961FB5339CA25E1 /* ofxGuiGroup.cpp */; };
@@ -98,6 +110,15 @@
 		412035AF19E05AFB0091CE01 /* ofxFFTFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxFFTFile.h; sourceTree = "<group>"; };
 		412035B019E05AFB0091CE01 /* ofxFFTLive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFFTLive.cpp; sourceTree = "<group>"; };
 		412035B119E05AFB0091CE01 /* ofxFFTLive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxFFTLive.h; sourceTree = "<group>"; };
+		4120366219E0844C0091CE01 /* AudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioManager.cpp; sourceTree = "<group>"; };
+		4120366319E0844C0091CE01 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		4120366419E0844C0091CE01 /* ofAppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofAppDefines.h; sourceTree = "<group>"; };
+		4120366719E0844C0091CE01 /* AbstractScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractScene.cpp; sourceTree = "<group>"; };
+		4120366819E0844C0091CE01 /* AbstractScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractScene.h; sourceTree = "<group>"; };
+		4120366919E0844C0091CE01 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		4120366A19E0844C0091CE01 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
+		4120366C19E0844C0091CE01 /* Drag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drag.cpp; sourceTree = "<group>"; };
+		4120366D19E0844C0091CE01 /* Drag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drag.h; sourceTree = "<group>"; };
 		4A44D4483E4370AF91480DFC /* aiScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiScene.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/aiScene.h; sourceTree = SOURCE_ROOT; };
 		4CB11A8DD9233C659BE9FBCD /* ofxAssimpModelLoader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAssimpModelLoader.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.h; sourceTree = SOURCE_ROOT; };
 		4EA376CBE9D34280DBD85E02 /* ofxAssimpModelLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAssimpModelLoader.cpp; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.cpp; sourceTree = SOURCE_ROOT; };
@@ -246,6 +267,43 @@
 				412035B119E05AFB0091CE01 /* ofxFFTLive.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		4120366119E0844C0091CE01 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				4120366219E0844C0091CE01 /* AudioManager.cpp */,
+				4120366319E0844C0091CE01 /* AudioManager.h */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
+		4120366519E0844C0091CE01 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				4120366619E0844C0091CE01 /* abstract */,
+				4120366919E0844C0091CE01 /* SceneManager.cpp */,
+				4120366A19E0844C0091CE01 /* SceneManager.h */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
+		4120366619E0844C0091CE01 /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4120366719E0844C0091CE01 /* AbstractScene.cpp */,
+				4120366819E0844C0091CE01 /* AbstractScene.h */,
+			);
+			path = abstract;
+			sourceTree = "<group>";
+		};
+		4120366B19E0844C0091CE01 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				4120366C19E0844C0091CE01 /* Drag.cpp */,
+				4120366D19E0844C0091CE01 /* Drag.h */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 		480A780D8D0308AE4A368801 /* ofxGui */ = {
@@ -414,6 +472,10 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4120366119E0844C0091CE01 /* audio */,
+				4120366419E0844C0091CE01 /* ofAppDefines.h */,
+				4120366519E0844C0091CE01 /* scene */,
+				4120366B19E0844C0091CE01 /* ui */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -554,18 +616,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4120367219E084720091CE01 /* fft.cpp in Sources */,
+				4120367319E084720091CE01 /* fft.h in Sources */,
+				4120367419E084720091CE01 /* ofxFFTBase.cpp in Sources */,
+				4120367519E084720091CE01 /* ofxFFTBase.h in Sources */,
+				4120367619E084720091CE01 /* ofxFFTFile.cpp in Sources */,
+				4120367719E084720091CE01 /* ofxFFTFile.h in Sources */,
+				4120367819E084720091CE01 /* ofxFFTLive.cpp in Sources */,
+				4120367919E084720091CE01 /* ofxFFTLive.h in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				EFB415D1A996754FC7BA41E4 /* ofxAssimpAnimation.cpp in Sources */,
+				4120367119E0844C0091CE01 /* Drag.cpp in Sources */,
 				DC1DA301F2B134C4F57092C1 /* ofxAssimpMeshHelper.cpp in Sources */,
 				99BF0BF404711D5F425D05CC /* ofxAssimpModelLoader.cpp in Sources */,
 				3E14BA3DC838290F2C4BEEA8 /* ofxAssimpTexture.cpp in Sources */,
 				258DE4FE0E17A691B1ECAB06 /* ofxBaseGui.cpp in Sources */,
 				7D38DC8021C7B4DAF7A69C2D /* ofxButton.cpp in Sources */,
+				4120366F19E0844C0091CE01 /* AbstractScene.cpp in Sources */,
 				92341401421A0B920082DDBD /* ofxGuiGroup.cpp in Sources */,
 				E7AC2657E8C96AAAEE1D9B19 /* ofxLabel.cpp in Sources */,
 				D41B21C1AB6D1BBB8EF5A522 /* ofxPanel.cpp in Sources */,
 				3D5B05390E4B441DBA465D48 /* ofxSlider.cpp in Sources */,
+				4120366E19E0844C0091CE01 /* AudioManager.cpp in Sources */,
+				4120367019E0844C0091CE01 /* SceneManager.cpp in Sources */,
 				47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */,
 				1D630D2FD3E2F527A7747C00 /* ofxToggle.cpp in Sources */,
 				DB46F954E2510AEEDA6DE642 /* ofxXmlSettings.cpp in Sources */,
