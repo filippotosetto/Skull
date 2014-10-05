@@ -22,7 +22,7 @@ void ExampleScene::update() {
         return;
     }
 
-    // hode
+    // hide
     if (isHiding) {
         ofDrawBitmapString("EXAMPLE HIDING", 20, 200);
         return;
@@ -30,6 +30,24 @@ void ExampleScene::update() {
 
     // update
     ofDrawBitmapString("NORMAL UPDATE", 20, 200);
+
+    // audio data
+    int numData = 10;
+    float * audioData = new float[numData];
+    AudioManager::getFFT()->getFftPeakData(audioData, numData);
+
+    // draw
+    float radius = 20;
+    float variation = 100;
+    float w = radius + audioData[0] * variation;
+    float h = radius + audioData[1] * variation;
+    float x = (STAGE_WIDTH - w) / 2;
+    float y = (STAGE_HEIGHT - h) / 2;
+
+    ofPushStyle();
+    ofSetColor(ofColor::white);
+    ofRect(x, y, w, h);
+    ofPopStyle();
 
 }
 
