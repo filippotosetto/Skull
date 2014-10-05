@@ -9,8 +9,6 @@
 #include "ui/Drag.h"
 #include "audio/AudioManager.h"
 #include "scene/SceneManager.h"
-#include "scene/abstract/AbstractScene.h"
-#include "scene/example/ExampleScene.h"
 
 
 class ofApp : public ofBaseApp{

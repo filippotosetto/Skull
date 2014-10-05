@@ -1,5 +1,9 @@
 #include "ofApp.h"
 
+#include "scene/abstract/AbstractScene.h"
+#include "scene/example/ExampleScene.h"
+#include "scene/circles/CirclesScene.h"
+
 //--------------------------------------------------------------
 void ofApp::setup(){
 
@@ -156,6 +160,7 @@ void ofApp::initScenes() {
 
     SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
     SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
+    SceneManager::add(new CirclesScene(SceneManager::getNum(), "circles"));
     SceneManager::navto(0);
 
 }
