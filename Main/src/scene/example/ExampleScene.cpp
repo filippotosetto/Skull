@@ -36,16 +36,14 @@ void ExampleScene::update() {
 //--------------------------------------------------------------
 void ExampleScene::show() {
 
-    ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::showComplete);
-    timer.setup(2000, false);
+    AbstractScene::show(2000);
 
 }
 
 //--------------------------------------------------------------
 void ExampleScene::hide() {
 
-    ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::hideComplete);
-    timer.setup(2000, false);
+    AbstractScene::hide(2000);
 
 }
 

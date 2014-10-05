@@ -36,9 +36,18 @@ void AbstractScene::show() {
 
     showComplete();
 
-    // use in subclass for a transition
-    // ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::showComplete);
-    // timer.setup(2000, false);
+}
+
+//--------------------------------------------------------------
+void AbstractScene::show(float millis) {
+
+    if (millis <= 0) {
+        showComplete();
+        return;
+    }
+
+    ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::showComplete);
+    timer.setup(millis, false);
 
 }
 
@@ -47,10 +56,21 @@ void AbstractScene::hide() {
 
     hideComplete();
 
-    // use in subclass for a transition
-    // ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::hideComplete);
-    // timer.setup(2000, false);
 }
+
+//--------------------------------------------------------------
+void AbstractScene::hide(float millis) {
+
+    if (millis <= 0) {
+        hideComplete();
+        return;
+    }
+
+    ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::hideComplete);
+    timer.setup(2000, false);
+
+}
+
 
 //--------------------------------------------------------------
 void AbstractScene::showComplete(ofEventArgs &e) {

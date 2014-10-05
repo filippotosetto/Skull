@@ -16,8 +16,11 @@ class AbstractScene {
 
         virtual void setup();
         virtual void update();
+
         virtual void show();
+        virtual void show(float millis);
         virtual void hide();
+        virtual void hide(float millis);
 
         virtual void showComplete();
         virtual void showComplete(ofEventArgs &e);
