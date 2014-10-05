@@ -14,5 +14,10 @@ class ExampleScene : public AbstractScene {
         void initGUI();
 
     private:
+        ofRectangle rect;
+        float rectSize = 20.f;
+
+        void onRectSlideIn(float* arg);
+        void onRectSlideOut(float* arg);
 
 };

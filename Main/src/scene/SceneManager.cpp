@@ -82,7 +82,7 @@ void SceneManager::navto(string name) {
 //--------------------------------------------------------------
 void SceneManager::onSceneShowComplete(bool &b) {
 
-    cout << "SceneManager::onSceneShowComplete" << endl;
+//    cout << "SceneManager::onSceneShowComplete" << endl;
     ofRemoveListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneShowComplete);
     __instance->get(__instance->currScene)->isShowing = false;
 }
@@ -90,7 +90,7 @@ void SceneManager::onSceneShowComplete(bool &b) {
 //--------------------------------------------------------------
 void SceneManager::onSceneHideComplete(bool &b) {
 
-    cout << "SceneManager::onSceneHideComplete" << endl;
+//    cout << "SceneManager::onSceneHideComplete" << endl;
     ofRemoveListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneHideComplete);
     __instance->get(__instance->currScene)->isHiding = false;
 

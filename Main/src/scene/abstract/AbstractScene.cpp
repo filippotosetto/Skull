@@ -67,7 +67,7 @@ void AbstractScene::hide(float millis) {
     }
 
     ofAddListener(timer.TIMER_REACHED, (AbstractScene*)this, &AbstractScene::hideComplete);
-    timer.setup(2000, false);
+    timer.setup(millis, false);
 
 }
 

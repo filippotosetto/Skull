@@ -54,3 +54,4 @@ Prototypes/01/obj/
 *.depend
 Prototypes/01/01.layout
 *.rc
+Main/bin/data/skull.dae

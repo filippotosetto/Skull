@@ -135,7 +135,7 @@ void ofApp::initDrags() {
 //--------------------------------------------------------------
 void ofApp::initScenes() {
 
-    SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
+//    SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
     SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
     SceneManager::add(new CirclesScene(SceneManager::getNum(), "circles"));
     SceneManager::navto(0);

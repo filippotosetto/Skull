@@ -9,6 +9,8 @@ void ExampleScene::setup() {
 
     AbstractScene::setup();
 
+    rect.set(0.f, 0.f, rectSize, rectSize);
+
 }
 
 //--------------------------------------------------------------
@@ -18,18 +20,28 @@ void ExampleScene::update() {
 
     // show
     if (isShowing) {
-        ofDrawBitmapString("EXAMPLE SHOWING", 20, 200);
+        ofDrawBitmapString("EXAMPLE SHOWING", 10, STAGE_HEIGHT - 20);
+
+        ofPushStyle();
+        ofSetColor(ofColor::white);
+        ofRect(rect);
+        ofPopStyle();
         return;
     }
 
     // hide
     if (isHiding) {
-        ofDrawBitmapString("EXAMPLE HIDING", 20, 200);
+        ofDrawBitmapString("EXAMPLE HIDING", 10, STAGE_HEIGHT - 20);
+
+        ofPushStyle();
+        ofSetColor(ofColor::white);
+        ofRect(rect);
+        ofPopStyle();
         return;
     }
 
     // update
-    ofDrawBitmapString("NORMAL UPDATE", 20, 200);
+    ofDrawBitmapString("NORMAL UPDATE", 10, STAGE_HEIGHT - 20);
 
     // audio data
     int numData = 10;
@@ -37,18 +49,15 @@ void ExampleScene::update() {
     AudioManager::getFFT()->getFftPeakData(audioData, numData);
 
     // draw
-    float radius = 20;
     float variation = 100;
-    float w = radius + audioData[0] * variation;
-    float h = radius + audioData[1] * variation;
-    float x = (STAGE_WIDTH - w) / 2;
-//    float y = (STAGE_HEIGHT - h) / 2;
-    // changed y value otherwise scull cover the rect
-    float y = (STAGE_HEIGHT - h) / 4  * 3;
+    rect.width = rectSize + audioData[0] * variation;
+    rect.height = rectSize; // + audioData[1] * variation;
+    rect.x = (STAGE_WIDTH - rect.width) / 2;
+    rect.y = (STAGE_HEIGHT - rect.height) / 5  * 4;
 
     ofPushStyle();
     ofSetColor(ofColor::white);
-    ofRect(x, y, w, h);
+    ofRect(rect);
     ofPopStyle();
 
 }
@@ -56,14 +65,27 @@ void ExampleScene::update() {
 //--------------------------------------------------------------
 void ExampleScene::show() {
 
-    AbstractScene::show(2000);
+    AbstractScene::show(800);
+
+    rect.x = 0.f;
+    rect.y = (STAGE_HEIGHT - rect.height) / 5  * 4;
+    rect.width = rectSize;
+    float tw = (STAGE_WIDTH + rect.width) / 2;
+    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.5f, EASE_OUT_QUART);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&rect.width), this, &ExampleScene::onRectSlideIn);
 
 }
 
 //--------------------------------------------------------------
 void ExampleScene::hide() {
 
-    AbstractScene::hide(2000);
+    AbstractScene::hide(600);
+
+    float tx = (STAGE_WIDTH - rect.width) / 2;
+    float tw = (STAGE_WIDTH + rect.width) / 2;
+    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_OUT_QUART);
+    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.3f, EASE_OUT_QUART);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&rect.width), this, &ExampleScene::onRectSlideOut);
 
 }
 
@@ -71,5 +93,25 @@ void ExampleScene::hide() {
 void ExampleScene::initGUI() {
 
     AbstractScene::initGUI();
+
+}
+
+//--------------------------------------------------------------
+void ExampleScene::onRectSlideIn(float* arg) {
+
+    float tw = rectSize;
+    float tx = (STAGE_WIDTH - tw) / 2;
+    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.3f, EASE_IN_OUT_QUART);
+    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_IN_OUT_QUART);
+    Tweenzor::removeCompleteListener(Tweenzor::getTween(&rect.width));
+
+}
+
+//--------------------------------------------------------------
+void ExampleScene::onRectSlideOut(float* arg) {
+
+    float tx = STAGE_WIDTH;
+    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_IN_OUT_QUART);
+    Tweenzor::removeCompleteListener(Tweenzor::getTween(&rect.width));
 
 }
