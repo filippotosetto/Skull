@@ -8,6 +8,7 @@ class SceneManager {
         static SceneManager* Instance();
 
         static void init();
+        static void update();
         static void add(AbstractScene* scene);
         static void next();
         static void prev();
@@ -19,7 +20,7 @@ class SceneManager {
         static AbstractScene* get(string name);
 
         static int getNum() { return __instance->scenes.size(); }
-        static AbstractScene* getCurrentScene() { return get(__instance->current); }
+        static AbstractScene* getCurrentScene() { return get(__instance->currScene); }
 
         static void toggleGUIVisible();
 
@@ -27,8 +28,12 @@ class SceneManager {
         static SceneManager* __instance;
 
         vector<AbstractScene*> scenes;
-        int current;
+        int currScene;
+        int nextScene;
         bool guiVisible;
+
+        void onSceneShowComplete(bool &b);
+        void onSceneHideComplete(bool &b);
 };
 
 
