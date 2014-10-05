@@ -59,6 +59,7 @@ void SceneManager::navto(int index) {
     if (__instance->get(__instance->currScene)) {
         __instance->nextScene = index;
         ofAddListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneHideComplete);
+        __instance->get(__instance->currScene)->isShowing = false;
         __instance->get(__instance->currScene)->isHiding = true;
         __instance->get(__instance->currScene)->hide();
     }
