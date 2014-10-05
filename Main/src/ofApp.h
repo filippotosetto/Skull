@@ -4,6 +4,7 @@
 
 #include "ofxXmlSettings.h"
 #include "ofxGui.h"
+#include "ofxAssimpModelLoader.h"
 
 #include "ui/Drag.h"
 #include "audio/AudioManager.h"
@@ -51,4 +52,7 @@ class ofApp : public ofBaseApp{
         ofxToggle drawDistortion;
         bool guiVisible = true;
 
+        // 3D
+        ofxAssimpModelLoader model;
+        ofLight	light;
 };

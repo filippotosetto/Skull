@@ -23,6 +23,10 @@ void ofApp::setup(){
 
     updateMesh();
 
+    // 3D
+    model.loadModel("skull.dae", true);
+    model.setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.55 , 0);
+
 }
 
 //--------------------------------------------------------------
@@ -41,6 +45,9 @@ void ofApp::update(){
     SceneManager::update();
 
     fbo.end();
+    
+    // update 3D
+    model.update();
 
 }
 
@@ -81,6 +88,27 @@ void ofApp::draw(){
         SceneManager::getCurrentScene()->gui.draw();
     }
 
+    
+    // 3D
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofEnableDepthTest();
+    glShadeModel(GL_SMOOTH);
+    light.enable();
+    ofEnableSeparateSpecularLight();
+    
+//    ofPushMatrix();
+//    ofTranslate(model.getPosition().x, model.getPosition().y, 0);
+//    ofRotate(-mouseX, 0, 1, 0);
+//    ofTranslate(-model.getPosition().x, -model.getPosition().y, 0);
+    model.drawFaces();
+//    ofPopMatrix();
+    
+    
+    // No idea why we need to disable everything after drawing faces
+    ofDisableDepthTest();
+    light.disable();
+    ofDisableLighting();
+    ofDisableSeparateSpecularLight();
 }
 
 //--------------------------------------------------------------

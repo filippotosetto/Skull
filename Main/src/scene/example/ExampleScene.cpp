@@ -42,7 +42,9 @@ void ExampleScene::update() {
     float w = radius + audioData[0] * variation;
     float h = radius + audioData[1] * variation;
     float x = (STAGE_WIDTH - w) / 2;
-    float y = (STAGE_HEIGHT - h) / 2;
+//    float y = (STAGE_HEIGHT - h) / 2;
+    // changed y value otherwise scull cover the rect
+    float y = (STAGE_HEIGHT - h) / 4  * 3;
 
     ofPushStyle();
     ofSetColor(ofColor::white);
