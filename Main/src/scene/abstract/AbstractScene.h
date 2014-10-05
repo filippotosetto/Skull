@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-//#include "ofxTweenzor.h"
+#include "ofxTweenzor.h"
 #include "ofxTimer.h"
 #include "ofAppDefines.h"
 #include "../../audio/AudioManager.h"

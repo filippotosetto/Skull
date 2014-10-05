@@ -5,8 +5,10 @@
 #include "ofxXmlSettings.h"
 #include "ofxGui.h"
 #include "ofxAssimpModelLoader.h"
+#include "ofxTweenzor.h"
 
 #include "ui/Drag.h"
+#include "skull/Skull.h"
 #include "audio/AudioManager.h"
 #include "scene/SceneManager.h"
 
@@ -31,8 +33,9 @@ class ofApp : public ofBaseApp{
 		void initGUI();
 		void initDrags();
 		void initScenes();
+		void initSkull();
 
-		void updateMesh();
+		void updatePlane();
 		void saveSettings();
 
 		ofPoint lerpPoint(ofPoint start, ofPoint end, float amt);
@@ -51,6 +54,5 @@ class ofApp : public ofBaseApp{
         bool guiVisible = true;
 
         // 3D
-        ofxAssimpModelLoader model;
-        ofLight	light;
+        Skull skull;
 };

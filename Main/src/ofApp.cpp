@@ -19,17 +19,14 @@ void ofApp::setup(){
 
     AudioManager::init();
     SceneManager::init();
-//    Tweenzor::init();
+    Tweenzor::init();
 
     initGUI();
     initDrags();
     initScenes();
+    initSkull();
 
-    updateMesh();
-
-    // 3D
-    model.loadModel("skull.dae", true);
-    model.setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.55 , 0);
+    updatePlane();
 
 }
 
@@ -37,7 +34,7 @@ void ofApp::setup(){
 void ofApp::update(){
 
     // update tweens
-//    Tweenzor::update(ofGetElapsedTimeMillis());
+    Tweenzor::update(ofGetElapsedTimeMillis());
 
     // update audio
     AudioManager::update();
@@ -45,13 +42,11 @@ void ofApp::update(){
     // update scene
     fbo.begin();
 	ofClear(0, 0, 0, 0);
-
     SceneManager::update();
-
     fbo.end();
-    
+
     // update 3D
-    model.update();
+    skull.update();
 
 }
 
@@ -92,27 +87,9 @@ void ofApp::draw(){
         SceneManager::getCurrentScene()->gui.draw();
     }
 
-    
+
     // 3D
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    ofEnableDepthTest();
-    glShadeModel(GL_SMOOTH);
-    light.enable();
-    ofEnableSeparateSpecularLight();
-    
-//    ofPushMatrix();
-//    ofTranslate(model.getPosition().x, model.getPosition().y, 0);
-//    ofRotate(-mouseX, 0, 1, 0);
-//    ofTranslate(-model.getPosition().x, -model.getPosition().y, 0);
-    model.drawFaces();
-//    ofPopMatrix();
-    
-    
-    // No idea why we need to disable everything after drawing faces
-    ofDisableDepthTest();
-    light.disable();
-    ofDisableLighting();
-    ofDisableSeparateSpecularLight();
+    skull.draw();
 }
 
 //--------------------------------------------------------------
@@ -166,6 +143,13 @@ void ofApp::initScenes() {
 }
 
 //--------------------------------------------------------------
+void ofApp::initSkull() {
+
+    skull.setup();
+
+}
+
+//--------------------------------------------------------------
 ofPoint ofApp::lerpPoint(ofPoint start, ofPoint end, float amt) {
 
     return start + amt * (end - start);
@@ -173,7 +157,7 @@ ofPoint ofApp::lerpPoint(ofPoint start, ofPoint end, float amt) {
 }
 
 //--------------------------------------------------------------
-void ofApp::updateMesh() {
+void ofApp::updatePlane() {
 
     ofMesh & mesh = plane.getMesh();
 
@@ -274,7 +258,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
     for (vector<Drag>::iterator d = drags.begin(); d != drags.end(); ++d) {
         if (d->down) {
             d->mouseMoved();
-            updateMesh();
+            updatePlane();
             return;
         }
     }
