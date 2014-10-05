@@ -6,7 +6,7 @@
 		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;src\;src\ui\;addons\ofxGui\src\;addons\ofxAssimpModelLoader\libs\assimp\include\;addons\ofxAssimpModelLoader\src\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxAssimpModelLoader\libs\assimp\include\Compiler\;" />
+		<Option virtualFolders="addons\;src\;src\ui\;addons\ofxGui\src\;addons\ofxAssimpModelLoader\libs\assimp\include\;addons\ofxAssimpModelLoader\src\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxAssimpModelLoader\libs\assimp\include\Compiler\;addons\ofxFFT\;src\audio\;src\scene\;src\scene\abstract\;addons\ofxFFT\libs\;addons\ofxFFT\src\;addons\ofxTimer\;src\scene\example\;" />
 		<Build>
 			<Target title="release">
 				<Option output="bin/$(PROJECT_NAME)" prefix_auto="1" extension_auto="1" />
@@ -82,6 +82,7 @@
 			<Add directory="../../../../addons/ofxXmlSettings/src" />
 			<Add directory="../../../../addons/ofxFFT/src" />
 			<Add directory="../../../../addons/ofxFFT/libs" />
+			<Add directory="../../../../addons/ofxTimer/src" />
 		</Compiler>
 		<Linker>
 			<Add library="..\..\..\..\libs\FreeImage\lib\win_cb\FreeImage.lib" />
@@ -310,6 +311,8 @@
 		<Unit filename="../../../../addons/ofxGui/src/ofxToggle.h">
 			<Option virtualFolder="addons/ofxGui/src" />
 		</Unit>
+		<Unit filename="../../../../addons/ofxTimer/src/ofxTimer.cpp" />
+		<Unit filename="../../../../addons/ofxTimer/src/ofxTimer.h" />
 		<Unit filename="../../../../addons/ofxXmlSettings/libs/tinyxml.cpp">
 			<Option virtualFolder="addons/ofxXmlSettings/libs" />
 		</Unit>
@@ -328,6 +331,12 @@
 		<Unit filename="../../../../addons/ofxXmlSettings/src/ofxXmlSettings.h">
 			<Option virtualFolder="addons/ofxXmlSettings/src" />
 		</Unit>
+		<Unit filename="src/audio/AudioManager.cpp">
+			<Option virtualFolder="src/audio/" />
+		</Unit>
+		<Unit filename="src/audio/AudioManager.h">
+			<Option virtualFolder="src/audio/" />
+		</Unit>
 		<Unit filename="src/main.cpp">
 			<Option virtualFolder="src" />
 		</Unit>
@@ -339,6 +348,30 @@
 		</Unit>
 		<Unit filename="src/ofAppDefines.h">
 			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/scene/SceneManager.cpp">
+			<Option virtualFolder="src/scene/" />
+		</Unit>
+		<Unit filename="src/scene/SceneManager.h">
+			<Option virtualFolder="src/scene/" />
+		</Unit>
+		<Unit filename="src/scene/abstract/AbstractScene.cpp">
+			<Option virtualFolder="src/scene/abstract/" />
+		</Unit>
+		<Unit filename="src/scene/abstract/AbstractScene.h">
+			<Option virtualFolder="src/scene/abstract/" />
+		</Unit>
+		<Unit filename="src/scene/example/ExampleScene.cpp">
+			<Option virtualFolder="src/scene/example/" />
+		</Unit>
+		<Unit filename="src/scene/example/ExampleScene.h">
+			<Option virtualFolder="src/scene/example/" />
+		</Unit>
+		<Unit filename="src/ui/Drag.cpp">
+			<Option virtualFolder="src/ui/" />
+		</Unit>
+		<Unit filename="src/ui/Drag.h">
+			<Option virtualFolder="src/ui/" />
 		</Unit>
 		<Extensions>
 			<code_completion />

@@ -34,14 +34,11 @@ void ofApp::update(){
     // update audio
     AudioManager::update();
 
-    // fbo
+    // update scene
     fbo.begin();
 	ofClear(0, 0, 0, 0);
 
-    // scene
-    if (drawScenes) {
-        SceneManager::getCurrentScene()->update();
-    }
+    SceneManager::update();
 
     fbo.end();
 
@@ -130,6 +127,7 @@ void ofApp::initDrags() {
 void ofApp::initScenes() {
 
     SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
+    SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
     SceneManager::navto(0);
 
 }
