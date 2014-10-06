@@ -27,6 +27,14 @@
 		4120367D19E1404C0091CE01 /* ExampleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120367B19E1404C0091CE01 /* ExampleScene.cpp */; };
 		4120368319E141200091CE01 /* ofxTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120368119E141070091CE01 /* ofxTimer.cpp */; };
 		4120368419E141200091CE01 /* ofxTimer.h in Sources */ = {isa = PBXBuildFile; fileRef = 4120368219E141070091CE01 /* ofxTimer.h */; };
+		41463D3719E3315C008922D7 /* ofxTweenzor.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0619E3314C008922D7 /* ofxTweenzor.h */; };
+		41463D3819E3315C008922D7 /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0719E3314C008922D7 /* Tween.cpp */; };
+		41463D3919E3315C008922D7 /* Tween.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0819E3314C008922D7 /* Tween.h */; };
+		41463D3A19E3315C008922D7 /* TweenEvent.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0919E3314C008922D7 /* TweenEvent.h */; };
+		41463D3B19E3315C008922D7 /* TweenFunctions.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0A19E3314C008922D7 /* TweenFunctions.h */; };
+		41463D3C19E3315C008922D7 /* TweenSelector.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0B19E3314C008922D7 /* TweenSelector.h */; };
+		41463D3D19E3315C008922D7 /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0C19E3314C008922D7 /* Tweenzor.cpp */; };
+		41463D3E19E3315C008922D7 /* Tweenzor.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0D19E3314C008922D7 /* Tweenzor.h */; };
 		41BD248019E1ACFB00DA71F6 /* CirclesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */; };
 		41BD248A19E1AE4D00DA71F6 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD248819E1AE4D00DA71F6 /* Circle.cpp */; };
 		47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F689F55F2F059DD1E8C3BE6B /* ofxSliderGroup.cpp */; };
@@ -128,6 +136,14 @@
 		4120367C19E1404C0091CE01 /* ExampleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleScene.h; sourceTree = "<group>"; };
 		4120368119E141070091CE01 /* ofxTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTimer.cpp; sourceTree = "<group>"; };
 		4120368219E141070091CE01 /* ofxTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTimer.h; sourceTree = "<group>"; };
+		41463D0619E3314C008922D7 /* ofxTweenzor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTweenzor.h; sourceTree = "<group>"; };
+		41463D0719E3314C008922D7 /* Tween.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
+		41463D0819E3314C008922D7 /* Tween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
+		41463D0919E3314C008922D7 /* TweenEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweenEvent.h; sourceTree = "<group>"; };
+		41463D0A19E3314C008922D7 /* TweenFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweenFunctions.h; sourceTree = "<group>"; };
+		41463D0B19E3314C008922D7 /* TweenSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
+		41463D0C19E3314C008922D7 /* Tweenzor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
+		41463D0D19E3314C008922D7 /* Tweenzor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
 		41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CirclesScene.cpp; path = circles/CirclesScene.cpp; sourceTree = "<group>"; };
 		41BD247F19E1ACFB00DA71F6 /* CirclesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CirclesScene.h; path = circles/CirclesScene.h; sourceTree = "<group>"; };
 		41BD248819E1AE4D00DA71F6 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Circle.cpp; path = circles/Circle.cpp; sourceTree = "<group>"; };
@@ -348,6 +364,30 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		41463D0219E3314C008922D7 /* ofxTweenzor */ = {
+			isa = PBXGroup;
+			children = (
+				41463D0519E3314C008922D7 /* src */,
+			);
+			name = ofxTweenzor;
+			path = ../../../of_v0.8.4_osx_release/addons/ofxTweenzor;
+			sourceTree = "<group>";
+		};
+		41463D0519E3314C008922D7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				41463D0619E3314C008922D7 /* ofxTweenzor.h */,
+				41463D0719E3314C008922D7 /* Tween.cpp */,
+				41463D0819E3314C008922D7 /* Tween.h */,
+				41463D0919E3314C008922D7 /* TweenEvent.h */,
+				41463D0A19E3314C008922D7 /* TweenFunctions.h */,
+				41463D0B19E3314C008922D7 /* TweenSelector.h */,
+				41463D0C19E3314C008922D7 /* Tweenzor.cpp */,
+				41463D0D19E3314C008922D7 /* Tweenzor.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		41BD247D19E1ACD000DA71F6 /* circles */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +487,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				41463D0219E3314C008922D7 /* ofxTweenzor */,
 				4120367F19E141070091CE01 /* ofxTimer */,
 				4120356F19E05AFA0091CE01 /* ofxFFT */,
 				2C8F245ACBE61E28646C17F2 /* ofxAssimpModelLoader */,
@@ -670,6 +711,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41463D3719E3315C008922D7 /* ofxTweenzor.h in Sources */,
+				41463D3819E3315C008922D7 /* Tween.cpp in Sources */,
+				41463D3919E3315C008922D7 /* Tween.h in Sources */,
+				41463D3A19E3315C008922D7 /* TweenEvent.h in Sources */,
+				41463D3B19E3315C008922D7 /* TweenFunctions.h in Sources */,
+				41463D3C19E3315C008922D7 /* TweenSelector.h in Sources */,
+				41463D3D19E3315C008922D7 /* Tweenzor.cpp in Sources */,
+				41463D3E19E3315C008922D7 /* Tweenzor.h in Sources */,
 				4120368319E141200091CE01 /* ofxTimer.cpp in Sources */,
 				4120368419E141200091CE01 /* ofxTimer.h in Sources */,
 				4120367219E084720091CE01 /* fft.cpp in Sources */,
