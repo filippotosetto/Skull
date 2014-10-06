@@ -5,31 +5,31 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofBackground(50, 0);
     
+    // 3D model
     model.loadModel("skull-01.dae", true);
     model.setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.5 , -300);
 
     
     // fbo
     fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
-//    fbo.begin();
-//    ofClear(255,255,255, 0);
-//    fbo.end();
-    
 
+
+    // fft
     fftLive.setup();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-////    myVideo.update();
-
+    
+    // fft
     fftLive.update();
-
-//
+    fftLive.getFftPeakData(audioData, numOfBuckets);
+    
+    
+    // fbo
     fbo.begin();
     ofClear(0, 0, 0, 0);
 
-    fftLive.getFftPeakData(audioData, numOfBuckets);
     ofPushStyle();
     if (circles.size() == 0) {
         for(int i=0; i < numOfBuckets; i++) {
@@ -50,35 +50,31 @@ void ofApp::update(){
     fbo.end();
     
     
+    // 3D model
     model.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    ofSetColor(255);
     
-    
+    // draw fbo
     fbo.draw(0, 0);
 
     
-    
+    // 3D model
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
 
     ofEnableDepthTest();
 
-    glShadeModel(GL_SMOOTH); //some model / light stuff
+    glShadeModel(GL_SMOOTH);
     light.enable();
     ofEnableSeparateSpecularLight();
-
-//    ofPushMatrix();
 
     bindFBOTexture();
 
     model.drawFaces();
 
     unbindFBOTexture();
-
-//    ofPopMatrix();
 
     ofDisableDepthTest();
     light.disable();
@@ -88,6 +84,9 @@ void ofApp::draw(){
 }
 
 
+
+//--------------------------------------------------------------
+// Creates a texture from the fbo object
 void ofApp::bindFBOTexture() {
     ofTexture &tex = fbo.getTextureReference();
     tex.bind();
