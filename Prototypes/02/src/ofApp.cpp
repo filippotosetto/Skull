@@ -30,7 +30,9 @@ void ofApp::update(){
     fbo.begin();
     ofClear(0, 0, 0, 0);
 
+    ofRect(0,0, ofGetWidth(), ofGetHeight());
     ofPushStyle();
+
     if (circles.size() == 0) {
         for(int i=0; i < numOfBuckets; i++) {
             ofVec2f location = ofVec2f(ofRandom(100, ofGetWidth() - 100), ofRandom(100, ofGetHeight() - 100));
