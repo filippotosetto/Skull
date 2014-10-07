@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxAssimpModelLoader.h"
+#include "ofxCubeMap.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,4 +25,10 @@ class ofApp : public ofBaseApp{
 
 		ofMesh mesh;
         ofLight	light;
+        ofMaterial material;
+
+        ofBoxPrimitive box;
+        ofShader shader;
+
+        ofxCubeMap cubeMap;
 };

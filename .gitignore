@@ -55,3 +55,13 @@ Prototypes/01/obj/
 Prototypes/01/01.layout
 *.rc
 Main/bin/data/skull.dae
+Prototypes/02/obj/
+*.layout
+Prototypes/02/bin/data/skull-01.dae
+_docs/0321194969.pdf
+Prototypes/01/bin/data/clouds/xneg.png
+Prototypes/01/bin/data/clouds/xpos.png
+Prototypes/01/bin/data/clouds/yneg.png
+Prototypes/01/bin/data/clouds/ypos.png
+Prototypes/01/bin/data/clouds/zneg.png
+Prototypes/01/bin/data/clouds/zpos.png
