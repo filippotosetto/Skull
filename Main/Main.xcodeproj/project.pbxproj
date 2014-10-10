@@ -12,6 +12,9 @@
 		31D4524A8044C19E938536A9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E154D8D87EFD008B2914EA95 /* tinyxmlparser.cpp */; };
 		3D5B05390E4B441DBA465D48 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 512F85418609E67CFED65748 /* ofxSlider.cpp */; };
 		3E14BA3DC838290F2C4BEEA8 /* ofxAssimpTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AB87434F361927AEEEAB6F1 /* ofxAssimpTexture.cpp */; };
+		410C403F19E686DB0090A159 /* Skull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410C403D19E686DB0090A159 /* Skull.cpp */; };
+		410C404319E687230090A159 /* RectsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410C404119E687230090A159 /* RectsScene.cpp */; };
+		411A2C6419E7D36F005CC5F5 /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 411A2C6219E7D36F005CC5F5 /* Rectangle.cpp */; };
 		4120366E19E0844C0091CE01 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366219E0844C0091CE01 /* AudioManager.cpp */; };
 		4120366F19E0844C0091CE01 /* AbstractScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366719E0844C0091CE01 /* AbstractScene.cpp */; };
 		4120367019E0844C0091CE01 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4120366919E0844C0091CE01 /* SceneManager.cpp */; };
@@ -115,6 +118,12 @@
 		384B8B006BD4952593CF2F83 /* aiConfig.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiConfig.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/aiConfig.h; sourceTree = SOURCE_ROOT; };
 		38FE0AA3F9B9321507830ADA /* IOStream.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = IOStream.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/IOStream.h; sourceTree = SOURCE_ROOT; };
 		39736609DC123C429192B272 /* ofxAssimpAnimation.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAssimpAnimation.cpp; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpAnimation.cpp; sourceTree = SOURCE_ROOT; };
+		410C403D19E686DB0090A159 /* Skull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skull.cpp; sourceTree = "<group>"; };
+		410C403E19E686DB0090A159 /* Skull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skull.h; sourceTree = "<group>"; };
+		410C404119E687230090A159 /* RectsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RectsScene.cpp; path = rects/RectsScene.cpp; sourceTree = "<group>"; };
+		410C404219E687230090A159 /* RectsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RectsScene.h; path = rects/RectsScene.h; sourceTree = "<group>"; };
+		411A2C6219E7D36F005CC5F5 /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rectangle.cpp; path = rects/Rectangle.cpp; sourceTree = "<group>"; };
+		411A2C6319E7D36F005CC5F5 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = rects/Rectangle.h; sourceTree = "<group>"; };
 		412035A719E05AFB0091CE01 /* fft.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; };
 		412035A819E05AFB0091CE01 /* fft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fft.h; sourceTree = "<group>"; };
 		412035AC19E05AFB0091CE01 /* ofxFFTBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFFTBase.cpp; sourceTree = "<group>"; };
@@ -266,6 +275,26 @@
 			name = ofxAssimpModelLoader;
 			sourceTree = "<group>";
 		};
+		410C403C19E686DB0090A159 /* skull */ = {
+			isa = PBXGroup;
+			children = (
+				410C403D19E686DB0090A159 /* Skull.cpp */,
+				410C403E19E686DB0090A159 /* Skull.h */,
+			);
+			path = skull;
+			sourceTree = "<group>";
+		};
+		410C404019E687080090A159 /* rects */ = {
+			isa = PBXGroup;
+			children = (
+				410C404219E687230090A159 /* RectsScene.h */,
+				410C404119E687230090A159 /* RectsScene.cpp */,
+				411A2C6319E7D36F005CC5F5 /* Rectangle.h */,
+				411A2C6219E7D36F005CC5F5 /* Rectangle.cpp */,
+			);
+			name = rects;
+			sourceTree = "<group>";
+		};
 		4120356F19E05AFA0091CE01 /* ofxFFT */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +339,7 @@
 		4120366519E0844C0091CE01 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				410C404019E687080090A159 /* rects */,
 				41BD247D19E1ACD000DA71F6 /* circles */,
 				4120367A19E1404C0091CE01 /* example */,
 				4120366619E0844C0091CE01 /* abstract */,
@@ -567,6 +597,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				410C403C19E686DB0090A159 /* skull */,
 				4120366119E0844C0091CE01 /* audio */,
 				4120366419E0844C0091CE01 /* ofAppDefines.h */,
 				4120366519E0844C0091CE01 /* scene */,
@@ -720,6 +751,8 @@
 				41463D3D19E3315C008922D7 /* Tweenzor.cpp in Sources */,
 				41463D3E19E3315C008922D7 /* Tweenzor.h in Sources */,
 				4120368319E141200091CE01 /* ofxTimer.cpp in Sources */,
+				411A2C6419E7D36F005CC5F5 /* Rectangle.cpp in Sources */,
+				410C403F19E686DB0090A159 /* Skull.cpp in Sources */,
 				4120368419E141200091CE01 /* ofxTimer.h in Sources */,
 				4120367219E084720091CE01 /* fft.cpp in Sources */,
 				4120367319E084720091CE01 /* fft.h in Sources */,
@@ -728,6 +761,7 @@
 				4120367619E084720091CE01 /* ofxFFTFile.cpp in Sources */,
 				4120367719E084720091CE01 /* ofxFFTFile.h in Sources */,
 				4120367819E084720091CE01 /* ofxFFTLive.cpp in Sources */,
+				410C404319E687230090A159 /* RectsScene.cpp in Sources */,
 				4120367919E084720091CE01 /* ofxFFTLive.h in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,

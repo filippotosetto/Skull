@@ -51,6 +51,7 @@ class ofApp : public ofBaseApp{
 		ofxToggle drawScenes;
         ofxToggle drawWireframe;
         ofxToggle drawDistortion;
+        ofxToggle drawSkull;
         bool guiVisible = true;
 
         // 3D
