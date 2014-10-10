@@ -6,7 +6,7 @@
 		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;src\;src\ui\;addons\ofxGui\src\;addons\ofxAssimpModelLoader\libs\assimp\include\;addons\ofxAssimpModelLoader\src\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxAssimpModelLoader\libs\assimp\include\Compiler\;addons\ofxFFT\;src\audio\;src\scene\;src\scene\abstract\;addons\ofxFFT\libs\;addons\ofxFFT\src\;addons\ofxTimer\;src\scene\example\;" />
+		<Option virtualFolders="addons\;src\;src\ui\;addons\ofxGui\src\;addons\ofxAssimpModelLoader\libs\assimp\include\;addons\ofxAssimpModelLoader\src\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxAssimpModelLoader\libs\assimp\include\Compiler\;addons\ofxFFT\;src\audio\;src\scene\;src\scene\abstract\;addons\ofxFFT\libs\;addons\ofxFFT\src\;addons\ofxTimer\;src\scene\example\;src\skull\;addons\ofxTweenzor\;src\scene\circles\;" />
 		<Build>
 			<Target title="release">
 				<Option output="bin/$(PROJECT_NAME)" prefix_auto="1" extension_auto="1" />
@@ -83,6 +83,7 @@
 			<Add directory="../../../../addons/ofxFFT/src" />
 			<Add directory="../../../../addons/ofxFFT/libs" />
 			<Add directory="../../../../addons/ofxTimer/src" />
+			<Add directory="../../../../addons/ofxTweenzor/src" />
 		</Compiler>
 		<Linker>
 			<Add library="..\..\..\..\libs\FreeImage\lib\win_cb\FreeImage.lib" />
@@ -313,6 +314,14 @@
 		</Unit>
 		<Unit filename="../../../../addons/ofxTimer/src/ofxTimer.cpp" />
 		<Unit filename="../../../../addons/ofxTimer/src/ofxTimer.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/Tween.cpp" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/Tween.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/TweenEvent.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/TweenFunctions.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/TweenSelector.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/Tweenzor.cpp" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/Tweenzor.h" />
+		<Unit filename="../../../../addons/ofxTweenzor/src/ofxTweenzor.h" />
 		<Unit filename="../../../../addons/ofxXmlSettings/libs/tinyxml.cpp">
 			<Option virtualFolder="addons/ofxXmlSettings/libs" />
 		</Unit>
@@ -361,11 +370,29 @@
 		<Unit filename="src/scene/abstract/AbstractScene.h">
 			<Option virtualFolder="src/scene/abstract/" />
 		</Unit>
+		<Unit filename="src/scene/circles/Circle.cpp">
+			<Option virtualFolder="src/scene/circles/" />
+		</Unit>
+		<Unit filename="src/scene/circles/Circle.h">
+			<Option virtualFolder="src/scene/circles/" />
+		</Unit>
+		<Unit filename="src/scene/circles/CirclesScene.cpp">
+			<Option virtualFolder="src/scene/circles/" />
+		</Unit>
+		<Unit filename="src/scene/circles/CirclesScene.h">
+			<Option virtualFolder="src/scene/circles/" />
+		</Unit>
 		<Unit filename="src/scene/example/ExampleScene.cpp">
 			<Option virtualFolder="src/scene/example/" />
 		</Unit>
 		<Unit filename="src/scene/example/ExampleScene.h">
 			<Option virtualFolder="src/scene/example/" />
+		</Unit>
+		<Unit filename="src/skull/Skull.cpp">
+			<Option virtualFolder="src/skull/" />
+		</Unit>
+		<Unit filename="src/skull/Skull.h">
+			<Option virtualFolder="src/skull/" />
 		</Unit>
 		<Unit filename="src/ui/Drag.cpp">
 			<Option virtualFolder="src/ui/" />
