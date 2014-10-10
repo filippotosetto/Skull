@@ -6,7 +6,7 @@ void ofApp::setup(){
     ofBackground(0, 0);
 
     model.loadModel("skull-01.dae", true);
-    model.setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.5 , 0);
+//    model.setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.5 , 0);
 
 //    material = model.getMaterialForMesh(0);
 //    cout << "material 0 color: " << model.getMaterialForMesh(0).getDiffuseColor() << endl;
@@ -15,11 +15,15 @@ void ofApp::setup(){
     box.set(50);
     box.setPosition(ofGetWidth()*.5, ofGetHeight()*.5, 0);
 
+    /*
     if(ofGetGLProgrammableRenderer()){
 		shader.load("shaders_gl3/noise.vert", "shaders_gl3/noise.frag");
 	}else{
 		shader.load("shaders/noise.vert", "shaders/noise.frag");
 	}
+    */
+
+	cubeMapShader.load("shaders/CubeMap");
 
 	cubeMap.loadImages("mountains/xpos.jpg",
                        "mountains/xneg.jpg",
@@ -41,13 +45,22 @@ void ofApp::draw(){
     float spinX = sin(ofGetElapsedTimef()*.35f);
     float spinY = cos(ofGetElapsedTimef()*.075f);
 
+    ofEnableDepthTest();
+    light.enable();
+//    glColor3f(1.0f, 0.2f, 0.2f);
+//    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT);
+
     ofPushMatrix();
     ofTranslate(ofGetWidth()*.5, ofGetHeight()*.5, 0);
-    ofRotate(180, 0, 0, 1);
-    ofRotate(ofGetElapsedTimef() * 4, 0, 1.0, 0.0);
+//    ofRotate(180, 0, 0, 1);
+//    ofRotate(ofGetElapsedTimef() * 4, 0, 1.0, 0.0);
 
     cubeMap.bind();
-    cubeMap.drawSkybox(1500);
+    cubeMapShader.begin();
+    cubeMapShader.setUniform1i("EnvMap", 0);
+//    cubeMap.drawSkybox(500);
+    model.drawFaces();
+    cubeMapShader.end();
     cubeMap.unbind();
 
     ofPopMatrix();
@@ -55,22 +68,20 @@ void ofApp::draw(){
     box.rotate(spinX, 1.0, 0.0, 0.0);
     box.rotate(spinY, 0, 1.0, 0.0);
 
-    model.setRotation(0, ofGetElapsedTimef() * -2, 0.0, 1.0, 0.0);
+    model.setRotation(0, ofGetElapsedTimef() * -10, -1.0, 1.0, 0.0);
 
-    ofEnableDepthTest();
-    light.enable();
 
 //    shader.begin();
     //we want to pass in some varrying values to animate our type / color
-    shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1 );
-    shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18 );
+//    shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1 );
+//    shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18 );
 
     //we also pass in the mouse position
     //we have to transform the coords to what the shader is expecting which is 0,0 in the center and y axis flipped.
-    shader.setUniform2f("mouse", mouseX - ofGetWidth()/2, ofGetHeight()/2-mouseY );
+//    shader.setUniform2f("mouse", mouseX - ofGetWidth()/2, ofGetHeight()/2-mouseY );
 
 //    box.draw();
-    model.drawFaces();
+//    model.drawFaces();
 
 //    shader.end();
 

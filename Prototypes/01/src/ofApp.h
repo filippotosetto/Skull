@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
 
         ofBoxPrimitive box;
         ofShader shader;
+        ofShader cubeMapShader;
 
         ofxCubeMap cubeMap;
 };
