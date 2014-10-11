@@ -3,6 +3,7 @@
 #include "scene/abstract/AbstractScene.h"
 #include "scene/example/ExampleScene.h"
 #include "scene/circles/CirclesScene.h"
+#include "scene/rects/RectsScene.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -89,7 +90,9 @@ void ofApp::draw(){
 
 
     // 3D
-    skull.draw();
+    if(drawSkull) {
+        skull.draw();
+    }
 }
 
 //--------------------------------------------------------------
@@ -100,6 +103,7 @@ void ofApp::initGUI() {
     gui.add(drawScenes.setup("drawScenes", true));
     gui.add(drawWireframe.setup("drawWireframe", false));
     gui.add(drawDistortion.setup("drawDistortion", false));
+    gui.add(drawSkull.setup("drawSkull", true));
     gui.loadFromFile(guiPath);
 
 }
@@ -135,9 +139,11 @@ void ofApp::initDrags() {
 //--------------------------------------------------------------
 void ofApp::initScenes() {
 
-//    SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
+    SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
     SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
     SceneManager::add(new CirclesScene(SceneManager::getNum(), "circles"));
+    SceneManager::add(new RectsScene(SceneManager::getNum(), "rects"));
+
     SceneManager::navto(0);
 
 }
