@@ -23,9 +23,14 @@ class ofApp : public ofBaseApp{
 
 		ofxAssimpModelLoader model;
 
+		float radius;
+        ofVec3f center;
+
 		ofMesh mesh;
-        ofLight	light;
-        ofMaterial material;
+
+        ofLight pointLight;
+        ofLight spotLight;
+        ofLight directionalLight;
 
         ofBoxPrimitive box;
         ofShader shader;
