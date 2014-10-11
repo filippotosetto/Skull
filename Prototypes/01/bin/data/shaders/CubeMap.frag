@@ -34,14 +34,14 @@ void main()
 
 	for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {
 
-		vec4 lPosition = gl_ProjectionMatrixInverse * gl_LightSource[ i ].position;
+		vec4 lPosition = gl_ProjectionMatrixInverseTranspose * gl_LightSource[ i ].position;
 		// vec4 lPosition = gl_ProjectionMatrixInverse * vec4(800.0, 0.0, 0.0, 0.0);
 		vec3 lVector = lPosition.xyz + vViewPosition.xyz;
 
 		float lDistance = 1.0;
 		// if ( pointLightDistance[ i ] > 0.0 )
 			// lDistance = 1.0 - min( ( length( lVector ) / pointLightDistance[ i ] ), 1.0 );
-		lDistance = 1.0 - min( ( length( lVector ) / 10000.0 ), 1.0 );
+		// lDistance = 1.0 - min( ( length( lVector ) / 1000.0 ), 1.0 );
 
 		lVector = normalize( lVector );
 
@@ -68,7 +68,7 @@ void main()
 #endif
 
 
-/*
+
 #if MAX_SPOT_LIGHTS > 0
 
 	vec3 spotDiffuse = vec3( 0.0 );
@@ -76,7 +76,7 @@ void main()
 
 	for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {
 
-		vec4 lPosition = gl_ProjectionMatrixInverse * gl_LightSource[ i ].position;
+		vec4 lPosition = gl_ProjectionMatrixInverseTranspose * gl_LightSource[ i ].position;
 		// vec4 lPosition = gl_ModelViewMatrixInverse * vec4(-1500.0, 0.0, 1500.0, 0.0);
 		vec3 lVector = lPosition.xyz + vViewPosition.xyz;
 
@@ -117,17 +117,17 @@ void main()
 	}
 
 #endif
-*/
+
 
 
 	vec4 totalDiffuse = vec4( 0.0, 0.0, 0.0, 1.0 );
 	vec4 totalSpecular = vec4( 0.0, 0.0, 0.0, 1.0 );
 
-	totalDiffuse.xyz += pointDiffuse;
-	totalSpecular.xyz += pointSpecular;
+	// totalDiffuse.xyz += pointDiffuse;
+	// totalSpecular.xyz += pointSpecular;
 
-	// totalDiffuse.xyz += spotDiffuse;
-	// totalSpecular.xyz += spotSpecular;
+	totalDiffuse.xyz += spotDiffuse;
+	totalSpecular.xyz += spotSpecular;
 
 	// ambient
 	// vec4 Iamb = gl_FrontLightProduct[0].ambient;
@@ -144,11 +144,13 @@ void main()
 	vec4 specular = totalSpecular * pow(max(dot(R, E), 0.0), 0.3 * material.shininess) * material.specular;
 
 	// final color
-	gl_FragColor = material.emission + ambient + diffuse + specular;
+	// gl_FragColor = material.emission + ambient + diffuse + specular;
 	// gl_FragColor = material.emission + totalDiffuse + material.ambient + totalSpecular;
-	// gl_FragColor = material.emission;
+	
+	// interesting specular
+	gl_FragColor = material.emission + diffuse + material.ambient + totalSpecular;
 
-	/*
+	
 	// combine with environment map
 	if ( combine == 1 )
 	{
@@ -162,6 +164,6 @@ void main()
 	{
 		gl_FragColor.xyz = mix( gl_FragColor.xyz, gl_FragColor.xyz * cubeColor.xyz, reflectivity );
 	}
-	*/
+	
 	
 }

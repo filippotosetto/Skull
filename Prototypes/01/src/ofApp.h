@@ -27,6 +27,7 @@ class ofApp : public ofBaseApp{
         ofVec3f center;
 
 		ofMesh mesh;
+		ofMaterial material;
 
         ofLight pointLight;
         ofLight spotLight;

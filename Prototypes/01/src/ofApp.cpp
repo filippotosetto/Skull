@@ -5,6 +5,7 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofBackground(0, 0);
 
+//    model.loadModel("skull-01.3ds", true);
     model.loadModel("skull-01.dae", true);
 
     radius		= 180.f;
@@ -30,20 +31,24 @@ void ofApp::setup(){
                        "mountains/zpos.jpg",
                        "mountains/zneg.jpg");
 
-    glShadeModel(GL_SMOOTH);
+//    glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
 
-    pointLight.setDiffuseColor( ofColor(0.f, 255.f, 0.f));
-//    pointLight.setSpecularColor( ofColor(0.f, 255.f, 0.f));
-//	pointLight.setPosition(0.0, 0.0, 0.0);
-//	pointLight.setPosition(-200.0, 200.0, 000.0);
-//	pointLight.setSpotlight(45.f, 100.f);
+    ofSetSmoothLighting(true);
+    ofSetSphereResolution(128);
 
-	spotLight.setDiffuseColor( ofColor(255.f, 0.f, 0.f));
+    pointLight.setDiffuseColor( ofColor(0.f, 255.f, 0.f));
+//    pointLight.setSpecularColor( ofColor(255.f, 255.f, 0.f));
+	pointLight.setPointLight();
+
+	spotLight.setDiffuseColor( ofColor(255.f, 0.f, 120.f));
 //	pointLight.setSpecularColor( ofColor(255.f, 0.f, 0.f));
-//	spotLight.setPosition(200.0, -500.0, 000.0);
-//    spotLight.setSpotlight(45.f, 1.f);
+//    spotLight.setSpotlight();
+//    spotLight.setSpotlightCutOff( 50 );
 //    spotLight.setSpotConcentration( 45 );
+
+    material.setShininess(120);
+    material.setSpecularColor(ofColor(255, 255, 255, 255));
 
 }
 
@@ -54,7 +59,7 @@ void ofApp::update(){
     pointLight.setPosition(cos(ofGetElapsedTimef()*.6f) * radius * 2 + center.x,
 						   sin(ofGetElapsedTimef()*.8f) * radius * 2 + center.y,
 						   -cos(ofGetElapsedTimef()*.8f) * radius * 2 + center.z);
-    spotLight.setPosition( mouseX, mouseY, 400);
+    spotLight.setPosition( mouseX, mouseY, -300);
 }
 
 //--------------------------------------------------------------
@@ -133,7 +138,7 @@ void ofApp::draw(){
     */
 
     ofEnableLighting();
-//    pointLight.enable();
+    pointLight.enable();
     spotLight.enable();
 
     ofPushMatrix();
@@ -141,20 +146,29 @@ void ofApp::draw(){
 //    ofRotate(180, 0, 0, 1);
 //    ofRotate(ofGetElapsedTimef() * 4, 0, 1.0, 0.0);
 
-    cubeMap.bind();
+//    cubeMap.bind();
     cubeMapShader.begin();
+//    material.begin();
     cubeMapShader.setUniform1i("envMap", 0);
-    cubeMapShader.setUniform1f("reflectivity", 0.8);
-    cubeMapShader.setUniform1i("combine", 1);
+    cubeMapShader.setUniform1f("reflectivity", 0.4f);
+    cubeMapShader.setUniform1i("combine", 2);
     cubeMapShader.setUniform4f("material.ambient", 0.0f, 0.0f, 0.0f, 1.0f);
-    cubeMapShader.setUniform4f("material.diffuse", 1.0f, 1.0f, 1.0f, 1.0f);
-    cubeMapShader.setUniform4f("material.specular", 0.8f, 0.8f, 0.8f, 1.0f);
-    cubeMapShader.setUniform4f("material.emission", 0.0f, 0.0f, 0.0f, 1.0f);
-    cubeMapShader.setUniform1f("material.shininess", 2.0);
+    cubeMapShader.setUniform4f("material.diffuse", 0.0f, 0.0f, 1.0f, 1.0f);
+    cubeMapShader.setUniform4f("material.specular", 1.f, 1.f, 1.f, 1.0f);
+    cubeMapShader.setUniform4f("material.emission", 0.0f, 0.0f, 0.1f, 1.0f);
+    cubeMapShader.setUniform1f("material.shininess", 120.0);
+
+//    ofPushMatrix();
+    ofTranslate(0, 0, -300);
+//    ofRotate(ofGetElapsedTimef() * .8 * RAD_TO_DEG, 0, 1, 0);
+//	ofDrawSphere( 0,0,0, radius);
+//    ofPopMatrix();
+
 //    cubeMap.drawSkybox(500);
     model.drawFaces();
-    cubeMapShader.end();
-    cubeMap.unbind();
+//    cubeMapShader.end();
+//    material.end();
+//    cubeMap.unbind();
 
     ofPopMatrix();
 
@@ -169,7 +183,7 @@ void ofApp::draw(){
     pointLight.disable();
     ofDisableLighting();
 
-//    model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
+    model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
 
 
 //    shader.begin();
