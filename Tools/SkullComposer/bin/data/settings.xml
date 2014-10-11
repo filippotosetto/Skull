@@ -1,0 +1,40 @@
+<group>
+	<scene>
+		<backgroundColor>0, 0, 0, 255</backgroundColor>
+	</scene>
+	<material>
+		<emissive>86, 82, 83, 97</emissive>
+		<diffuse>69, 114, 43, 255</diffuse>
+		<specular>192, 184, 128, 255</specular>
+		<shininess>108.163</shininess>
+		<reflectivity>0.596939</reflectivity>
+	</material>
+	<render>
+		<combineLightsMode>2</combineLightsMode>
+		<combineEnvironmentMode>0</combineEnvironmentMode>
+	</render>
+	<light>
+		<light1Color>144, 195, 212, 255</light1Color>
+		<light2Color>12, 21, 87, 255</light2Color>
+	</light>
+<settings>
+		<scene>
+			<backgroundColor>126, 154, 205, 255</backgroundColor>
+		</scene>
+		<material>
+			<emissive>163, 70, 255, 255</emissive>
+			<diffuse>57, 83, 17, 255</diffuse>
+			<specular>31, 179, 178, 255</specular>
+			<shininess>10</shininess>
+			<reflectivity>0.459184</reflectivity>
+		</material>
+		<render>
+			<combineLightsMode>0</combineLightsMode>
+			<combineEnvironmentMode>0</combineEnvironmentMode>
+		</render>
+		<light>
+			<light1Color>152, 201, 0, 255</light1Color>
+			<light2Color>90, 0, 59, 255</light2Color>
+		</light>
+	</settings>
+</group>

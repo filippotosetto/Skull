@@ -65,3 +65,6 @@ Prototypes/01/bin/data/clouds/yneg.png
 Prototypes/01/bin/data/clouds/ypos.png
 Prototypes/01/bin/data/clouds/zneg.png
 Prototypes/01/bin/data/clouds/zpos.png
+Tools/SkullComposer/obj/
+Tools/SkullComposer/bin/data/models/skull-01.dae
+_docs/
