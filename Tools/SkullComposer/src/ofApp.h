@@ -26,6 +26,7 @@ class ofApp : public ofBaseApp{
 		void initShader();
 		void initCubeMap();
 		void initModel();
+		void initLights();
 
 		float radius;
         ofVec3f center;
@@ -50,12 +51,14 @@ class ofApp : public ofBaseApp{
 		ofParameter<ofColor> light1Color;
 		ofParameter<ofColor> light2Color;
 		ofParameter<bool> autoRotate;
-		ofParameter<ofVec3f> light2Position;
+		ofParameter<bool> drawDebugLights;
+//		ofParameter<ofVec3f> light2Position;
 
 		ofShader shader;
 		ofxAssimpModelLoader model;
 		ofLight light1;
 		ofLight light2;
+		ofSpherePrimitive sphereDebugLight;
 
 		ofxCubeMap cubeMap;
 

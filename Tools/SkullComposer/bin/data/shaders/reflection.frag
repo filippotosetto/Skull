@@ -11,19 +11,18 @@ uniform float reflectivity;
 uniform gl_MaterialParameters material;
 
 varying vec3 N;
-varying vec3 v;
+varying vec3 V;
 varying vec3 reflectVec;
 
 void main()
 {
 	vec4 cubeColor = textureCube(envMap, vec3(reflectVec.x, -reflectVec.y, reflectVec.z));
 
-	vec3 L = normalize(gl_LightSource[0].position.xyz - v);   
-	vec3 E = normalize(-v); // we are in Eye Coordinates, so EyePos is (0,0,0)  
+	vec3 L = normalize(gl_LightSource[0].position.xyz - V);   
+	vec3 E = normalize(-V); // we are in Eye Coordinates, so EyePos is (0,0,0)  
 	vec3 R = normalize(-reflect(L,N));
 
-	vec4 mvPosition = vec4(v, 1.0);
-	vec3 vViewPosition = -mvPosition.xyz;
+	vec3 vViewPosition = -V;
 	vec3 viewPosition = normalize(vViewPosition);
 
 
@@ -33,7 +32,8 @@ void main()
 
 	for ( int i = 0; i < MAX_POINT_LIGHTS; i ++ ) {
 
-		vec4 lPosition = gl_ProjectionMatrixInverseTranspose * gl_LightSource[ i ].position;
+		vec4 lPosition = gl_LightSource[ i ].position;
+		// vec4 lPosition = gl_ModelViewProjectionMatrix * gl_LightSource[ i ].position;
 		vec3 lVector = lPosition.xyz + vViewPosition.xyz;
 
 		float lDistance = 1.0;
@@ -71,7 +71,7 @@ void main()
 
 	for ( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {
 
-		vec4 lPosition = gl_ProjectionMatrixInverseTranspose * gl_LightSource[ i ].position;
+		vec4 lPosition = gl_LightSource[ i ].position;
 		vec3 lVector = lPosition.xyz + vViewPosition.xyz;
 
 		float lDistance = 1.0;
@@ -112,11 +112,11 @@ void main()
 	vec4 totalDiffuse = vec4( 0.0, 0.0, 0.0, 1.0 );
 	vec4 totalSpecular = vec4( 0.0, 0.0, 0.0, 1.0 );
 
-	// totalDiffuse.xyz += pointDiffuse;
-	// totalSpecular.xyz += pointSpecular;
+	totalDiffuse.xyz += pointDiffuse;
+	totalSpecular.xyz += pointSpecular;
 
-	totalDiffuse.xyz += spotDiffuse;
-	totalSpecular.xyz += spotSpecular;
+	// totalDiffuse.xyz += spotDiffuse;
+	// totalSpecular.xyz += spotSpecular;
 
 	vec4 diffuse = totalDiffuse * max(dot(N,L),0.0) * material.diffuse;
 	vec4 specular = totalSpecular * pow(max(dot(R, E), 0.0), 0.3 * material.shininess) * material.specular;

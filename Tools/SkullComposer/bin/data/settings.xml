@@ -20,6 +20,7 @@
 <settings>
 		<scene>
 			<backgroundColor>126, 154, 205, 255</backgroundColor>
+		<autoRotate>1</autoRotate>
 		</scene>
 		<material>
 			<emissive>163, 70, 255, 255</emissive>
@@ -34,7 +35,8 @@
 		</render>
 		<light>
 			<light1Color>152, 201, 0, 255</light1Color>
-			<light2Color>90, 0, 59, 255</light2Color>
+			<light2Color>189, 188, 255, 255</light2Color>
+		<drawDebugLights>1</drawDebugLights>
 		</light>
 	</settings>
 </group>

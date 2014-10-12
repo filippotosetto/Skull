@@ -9,6 +9,7 @@ void ofApp::setup(){
     initShader();
     initCubeMap();
     initModel();
+    initLights();
 }
 
 //--------------------------------------------------------------
@@ -33,7 +34,7 @@ void ofApp::initGUI(){
 	lightParams.setName("light");
     lightParams.add(light1Color.set("light1Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
     lightParams.add(light2Color.set("light2Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
-//    lightParams.add(light2Position.set("light2Position", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
+    lightParams.add(drawDebugLights.set("drawDebugLights", true));
 
     string guiFile = "settings.xml";
     gui.setup("settings", guiFile);
@@ -65,6 +66,12 @@ void ofApp::initModel(){
 }
 
 //--------------------------------------------------------------
+void ofApp::initLights(){
+    sphereDebugLight.setRadius(10);
+    ofSetSmoothLighting(false); // set true if model is smooth
+}
+
+//--------------------------------------------------------------
 void ofApp::update(){
     model.update();
     if (autoRotate) model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
@@ -75,16 +82,29 @@ void ofApp::update(){
     light1.setPosition(cos(ofGetElapsedTimef()*.6f) * radius * 2 + center.x,
 						   sin(ofGetElapsedTimef()*.8f) * radius * 2 + center.y,
 						   -cos(ofGetElapsedTimef()*.8f) * radius * 2 + center.z);
-    light2.setPosition( mouseX, mouseY, -300);
+    light2.setPosition( mouseX, mouseY, 100);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackground(backgroundColor);
 
+     ofEnableDepthTest();
+
+    // debug lights
+    if (drawDebugLights) {
+        ofPushStyle();
+        ofSetColor(light1.getDiffuseColor());
+        sphereDebugLight.setPosition(light1.getPosition());
+        sphereDebugLight.draw();
+        ofSetColor(light2.getDiffuseColor());
+        sphereDebugLight.setPosition(light2.getPosition());
+        sphereDebugLight.draw();
+        ofPopStyle();
+    }
+
     // model
     ofEnableLighting();
-    ofEnableDepthTest();
     light1.enable();
     light2.enable();
 
@@ -101,8 +121,10 @@ void ofApp::draw(){
     shader.setUniform1f("material.shininess", 120.0);
 
     ofPushMatrix();
+//    ofTranslate(center.x + gui.getWidth() * 0.5, center.y + 50, -300);
     ofTranslate(center.x + gui.getWidth() * 0.5, center.y + 50, -300);
     model.drawFaces();
+//    ofSphere(100);
     ofPopMatrix();
 
     shader.end();
@@ -110,8 +132,8 @@ void ofApp::draw(){
 
     light1.disable();
     light2.disable();
-    ofDisableDepthTest();
     ofDisableLighting();
+    ofDisableDepthTest();
 
     // gui
     if (guiVisible) gui.draw();
