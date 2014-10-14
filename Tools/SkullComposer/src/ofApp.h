@@ -59,6 +59,7 @@ class ofApp : public ofBaseApp{
 		ofLight light1;
 		ofLight light2;
 		ofSpherePrimitive sphereDebugLight;
+		ofSpherePrimitive primitive;
 
 		ofxCubeMap cubeMap;
 

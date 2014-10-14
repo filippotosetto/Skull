@@ -28,7 +28,7 @@ void ofApp::initGUI(){
 	materialParams.add(reflectivity.set("reflectivity", 0.5, 0, 1.0));
 
 	renderParams.setName("render");
-	renderParams.add(combineLightsMode.set("combineLightsMode", 1, 0, 2));
+	renderParams.add(combineLightsMode.set("combineLightsMode", 0, 0, 1));
 	renderParams.add(combineEnvironmentMode.set("combineEnvironmentMode", 1, 0, 2));
 
 	lightParams.setName("light");
@@ -63,17 +63,22 @@ void ofApp::initCubeMap(){
 //--------------------------------------------------------------
 void ofApp::initModel(){
     model.loadModel("models/skull-01.dae", true);
+//    model.loadModel("models/skull-01.3ds", true);
+
+    primitive.setRadius(200);
 }
 
 //--------------------------------------------------------------
 void ofApp::initLights(){
     sphereDebugLight.setRadius(10);
-    ofSetSmoothLighting(false); // set true if model is smooth
+    ofSetSmoothLighting(true); // set true if model is smooth
+
+//    light2.setSpotlight(50, 45);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    model.update();
+//    model.update();
     if (autoRotate) model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
 
     light1.setDiffuseColor(ofColor(light1Color));
@@ -82,6 +87,8 @@ void ofApp::update(){
     light1.setPosition(cos(ofGetElapsedTimef()*.6f) * radius * 2 + center.x,
 						   sin(ofGetElapsedTimef()*.8f) * radius * 2 + center.y,
 						   -cos(ofGetElapsedTimef()*.8f) * radius * 2 + center.z);
+
+    light2.setOrientation( ofVec3f( 0, cos(ofGetElapsedTimef()) * RAD_TO_DEG, 0) );
     light2.setPosition( mouseX, mouseY, 100);
 }
 
@@ -118,13 +125,13 @@ void ofApp::draw(){
     shader.setUniform4f("material.diffuse", (float)diffuse->r/255, (float)diffuse->g/255, (float)diffuse->b/255, (float)diffuse->a/255);
     shader.setUniform4f("material.specular", (float)specular->r/255, (float)specular->g/255, (float)specular->b/255, (float)specular->a/255);
     shader.setUniform4f("material.emission", (float)emissive->r/255, (float)emissive->g/255, (float)emissive->b/255, (float)emissive->a/255);
-    shader.setUniform1f("material.shininess", 120.0);
+    shader.setUniform1f("material.shininess", shininess);
 
     ofPushMatrix();
-//    ofTranslate(center.x + gui.getWidth() * 0.5, center.y + 50, -300);
     ofTranslate(center.x + gui.getWidth() * 0.5, center.y + 50, -300);
-    model.drawFaces();
+//    model.drawFaces();
 //    ofSphere(100);
+    primitive.drawFaces();
     ofPopMatrix();
 
     shader.end();
