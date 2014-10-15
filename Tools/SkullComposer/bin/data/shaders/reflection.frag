@@ -17,8 +17,7 @@ uniform float reflectivity;
 
 uniform gl_MaterialParameters material;
 
-varying vec3 reflectVec;
-varying vec3 eyeVec;
+varying vec3 vReflect;
 
 varying vec3 V;
 varying vec3 E;
@@ -162,7 +161,7 @@ void main() {
 
 
 	// environment reflection
-	vec4 cubeColor = textureCube(envMap, vec3(reflectVec.x, -reflectVec.y, reflectVec.z));
+	vec4 cubeColor = textureCube(envMap, vec3(vReflect.x, -vReflect.y, vReflect.z));
 
 	if (combineEnvironmentMode == 1) {
 		gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz, reflectivity);

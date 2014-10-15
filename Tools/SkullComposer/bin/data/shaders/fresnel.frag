@@ -10,7 +10,7 @@
 uniform samplerCube envMap;
 varying vec3 vReflect;
 varying vec3 vRefract[3];
-varying float vReflectionFactor;
+varying float fresnelReflection;
 
 
 void main() {
@@ -21,5 +21,5 @@ void main() {
 	refractedColor.g = textureCube( envMap, vec3( -vRefract[1].x, vRefract[1].y, -vRefract[1].z ) ).g;
 	refractedColor.b = textureCube( envMap, vec3( -vRefract[2].x, vRefract[2].y, -vRefract[2].z ) ).b;
 
-	gl_FragColor = mix( refractedColor, reflectedColor, clamp( vReflectionFactor, 0.0, 1.0 ) );
+	gl_FragColor = mix( refractedColor, reflectedColor, clamp( fresnelReflection, 0.0, 1.0 ) );
 }

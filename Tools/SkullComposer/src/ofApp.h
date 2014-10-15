@@ -49,16 +49,19 @@ class ofApp : public ofBaseApp{
 		ofParameter<float> reflectivity;
 		ofParameter<int> combineLightsMode;
 		ofParameter<int> combineEnvironmentMode;
+		ofParameter<bool> useFresnelShader;
 		ofParameter<ofColor> light1Color;
 		ofParameter<ofColor> light2Color;
 		ofParameter<bool> autoRotate;
 		ofParameter<bool> drawDebugLights;
-        ofParameter<float> mRefractionRatio;
-        ofParameter<float> mFresnelBias;
-        ofParameter<float> mFresnelPower;
-        ofParameter<float> mFresnelScale;
+		ofParameter<bool> drawSkybox;
+        ofParameter<float> refractionRatio;
+        ofParameter<float> fresnelBias;
+        ofParameter<float> fresnelPower;
+        ofParameter<float> fresnelScale;
 
-		ofShader shader;
+		ofShader shaderReflection;
+		ofShader shaderFresnel;
 		ofxAssimpModelLoader model;
 		ofLight light1;
 		ofLight light2;
@@ -66,5 +69,7 @@ class ofApp : public ofBaseApp{
 		ofSpherePrimitive primitive;
 
 		ofxCubeMap cubeMap;
+
+		ofEasyCam cam;
 
 };

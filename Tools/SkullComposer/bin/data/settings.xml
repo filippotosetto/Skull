@@ -19,13 +19,14 @@
 	</light>
 <settings>
 		<scene>
-			<backgroundColor>126, 154, 205, 255</backgroundColor>
-		<autoRotate>1</autoRotate>
+			<backgroundColor>30, 31, 42, 255</backgroundColor>
+		<autoRotate>1</autoRotate>
+		<drawSkybox>0</drawSkybox>
 		</scene>
 		<material>
-			<emissive>163, 70, 255, 255</emissive>
-			<diffuse>57, 83, 17, 255</diffuse>
-			<specular>31, 179, 178, 255</specular>
+			<emissive>14, 16, 38, 255</emissive>
+			<diffuse>63, 115, 219, 255</diffuse>
+			<specular>70, 179, 120, 255</specular>
 			<shininess>10</shininess>
 			<reflectivity>0.459184</reflectivity>
 		</material>
@@ -34,9 +35,16 @@
 			<combineEnvironmentMode>0</combineEnvironmentMode>
 		</render>
 		<light>
-			<light1Color>152, 201, 0, 255</light1Color>
-			<light2Color>189, 188, 255, 255</light2Color>
-		<drawDebugLights>1</drawDebugLights>
+			<light1Color>70, 140, 0, 255</light1Color>
+			<light2Color>189, 46, 255, 255</light2Color>
+		<drawDebugLights>1</drawDebugLights>
 		</light>
+	<fresnel>
+			<useFresnelShader>0</useFresnelShader>
+			<refractionRatio>1.02</refractionRatio>
+			<fresnelBias>0.1</fresnelBias>
+			<fresnelPower>2</fresnelPower>
+			<fresnelScale>1</fresnelScale>
+		</fresnel>
 	</settings>
 </group>

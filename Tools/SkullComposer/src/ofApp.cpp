@@ -20,7 +20,8 @@ void ofApp::initGUI(){
 
     sceneParams.setName("scene");
 	sceneParams.add(backgroundColor.set("backgroundColor", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255)));
-	sceneParams.add(autoRotate.set("autoRotate", true));
+	sceneParams.add(drawSkybox.set("drawSkybox", false));
+//	sceneParams.add(autoRotate.set("autoRotate", true));
 
     materialParams.setName("material");
 	materialParams.add(emissive.set("emissive", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
@@ -38,25 +39,33 @@ void ofApp::initGUI(){
     lightParams.add(light2Color.set("light2Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
     lightParams.add(drawDebugLights.set("drawDebugLights", true));
 
-    fresnelParams.add(mRefractionRatio.set("mRefractionRatio", 1.02, 0, 2.0));
-    fresnelParams.add(mFresnelBias.set("mFresnelBias", 0.1, 0, 1.0));
-    fresnelParams.add(mFresnelPower.set("mFresnelPower", 2.0, 0, 5.0));
-    fresnelParams.add(mFresnelScale.set("mFresnelScale", 1.0, 0, 1.0));
+    fresnelParams.setName("fresnel");
+	fresnelParams.add(useFresnelShader.set("useFresnelShader", false));
+    fresnelParams.add(refractionRatio.set("refractionRatio", 1.02, 0, 2.0));
+    fresnelParams.add(fresnelBias.set("fresnelBias", 0.1, 0, 1.0));
+    fresnelParams.add(fresnelPower.set("fresnelPower", 2.0, 0, 5.0));
+    fresnelParams.add(fresnelScale.set("fresnelScale", 1.0, 0, 1.0));
 
     string guiFile = "settings.xml";
     gui.setup("settings", guiFile);
     gui.add(sceneParams);
     gui.add(materialParams);
-    gui.add(renderParams);
     gui.add(lightParams);
+    gui.add(renderParams);
     gui.add(fresnelParams);
     gui.loadFromFile(guiFile);
+
+    gui.getGroup("scene").minimize();
+    gui.getGroup("material").minimize();
+    gui.getGroup("light").minimize();
+    gui.getGroup("render").minimize();
+    gui.getGroup("fresnel").minimize();
 }
 
 //--------------------------------------------------------------
 void ofApp::initShader(){
-//    shader.load("shaders/reflection");
-    shader.load("shaders/fresnel");
+    shaderReflection.load("shaders/reflection");
+    shaderFresnel.load("shaders/fresnel");
 }
 
 //--------------------------------------------------------------
@@ -90,7 +99,7 @@ void ofApp::initLights(){
 //--------------------------------------------------------------
 void ofApp::update(){
 //    model.update();
-    if (autoRotate) model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
+//    if (autoRotate) model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
 
     light1.setDiffuseColor(ofColor(light1Color));
     light2.setDiffuseColor(ofColor(light2Color));
@@ -107,7 +116,63 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(backgroundColor);
 
-     ofEnableDepthTest();
+    cubeMap.bind();
+
+    // draw skubox
+    if (drawSkybox) {
+        ofPushMatrix();
+        ofTranslate(center.x, center.y);
+        ofRotate(180, 0, 0, 1);
+        cubeMap.drawSkybox(2000);
+        ofPopMatrix();
+    }
+
+    ofEnableDepthTest();
+    ofEnableLighting();
+    light1.enable();
+    light2.enable();
+
+    if (!useFresnelShader) {
+        shaderReflection.begin();
+        shaderReflection.setUniform1i("envMap", 0);
+        shaderReflection.setUniform1f("reflectivity", reflectivity);
+        shaderReflection.setUniform1i("combineLightsMode", combineLightsMode);
+        shaderReflection.setUniform1i("combineEnvironmentMode", combineEnvironmentMode);
+        shaderReflection.setUniform4f("material.diffuse", (float)diffuse->r/255, (float)diffuse->g/255, (float)diffuse->b/255, (float)diffuse->a/255);
+        shaderReflection.setUniform4f("material.specular", (float)specular->r/255, (float)specular->g/255, (float)specular->b/255, (float)specular->a/255);
+        shaderReflection.setUniform4f("material.emission", (float)emissive->r/255, (float)emissive->g/255, (float)emissive->b/255, (float)emissive->a/255);
+        shaderReflection.setUniform1f("material.shininess", shininess);
+    }
+
+    if (useFresnelShader) {
+        shaderFresnel.begin();
+        shaderFresnel.setUniform1i("envMap", 0);
+        shaderFresnel.setUniform1f("refractionRatio", refractionRatio);
+        shaderFresnel.setUniform1f("fresnelBias", fresnelBias);
+        shaderFresnel.setUniform1f("fresnelPower", fresnelPower);
+        shaderFresnel.setUniform1f("fresnelScale", fresnelScale);
+    }
+
+    cam.begin();
+    cam.setDistance(1000);
+    cam.setVFlip(true);
+    model.drawFaces();
+    cam.end();
+
+//    ofPushMatrix();
+//    ofTranslate(mouseX, mouseY, -100);
+//    primitive.drawFaces();
+//    ofPopMatrix();
+
+    if (!useFresnelShader) shaderReflection.end();
+    if (useFresnelShader) shaderFresnel.end();
+
+    cubeMap.unbind();
+
+    light1.disable();
+    light2.disable();
+    ofDisableLighting();
+    ofDisableDepthTest();
 
     // debug lights
     if (drawDebugLights) {
@@ -120,51 +185,6 @@ void ofApp::draw(){
         sphereDebugLight.draw();
         ofPopStyle();
     }
-
-    // model
-    ofEnableLighting();
-    light1.enable();
-    light2.enable();
-
-    cubeMap.bind();
-    shader.begin();
-
-    shader.setUniform1i("envMap", 0);
-    shader.setUniform1f("reflectivity", reflectivity);
-    shader.setUniform1i("combineLightsMode", combineLightsMode);
-    shader.setUniform1i("combineEnvironmentMode", combineEnvironmentMode);
-    shader.setUniform4f("material.diffuse", (float)diffuse->r/255, (float)diffuse->g/255, (float)diffuse->b/255, (float)diffuse->a/255);
-    shader.setUniform4f("material.specular", (float)specular->r/255, (float)specular->g/255, (float)specular->b/255, (float)specular->a/255);
-    shader.setUniform4f("material.emission", (float)emissive->r/255, (float)emissive->g/255, (float)emissive->b/255, (float)emissive->a/255);
-    shader.setUniform1f("material.shininess", shininess);
-
-    shader.setUniform1f("mRefractionRatio", mRefractionRatio);
-    shader.setUniform1f("mFresnelBias", mFresnelBias);
-    shader.setUniform1f("mFresnelPower", mFresnelPower);
-    shader.setUniform1f("mFresnelScale", mFresnelScale);
-
-    ofPushMatrix();
-//    ofTranslate(center.x + gui.getWidth() * 0.5 - 300, center.y - 300, -300);
-    ofTranslate(mouseX, mouseY, -100);
-//    primitive.drawFaces();
-    model.drawFaces();
-    ofPopMatrix();
-
-    shader.end();
-
-    // draw cube map
-    ofPushMatrix();
-    ofTranslate(center.x, center.y);
-    ofRotate(180, 0, 0, 1);
-    cubeMap.drawSkybox(2000);
-    ofPopMatrix();
-
-    cubeMap.unbind();
-
-    light1.disable();
-    light2.disable();
-    ofDisableLighting();
-    ofDisableDepthTest();
 
     // gui
     if (guiVisible) gui.draw();

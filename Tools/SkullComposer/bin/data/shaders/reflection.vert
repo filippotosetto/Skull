@@ -9,8 +9,7 @@
 #version 120
 #extension GL_EXT_gpu_shader4 : require
 
-varying vec3 reflectVec;
-varying vec3 eyeVec;
+varying vec3 vReflect;
 
 varying vec3 V;
 varying vec3 E;
@@ -22,9 +21,7 @@ void main()
 	E = normalize(-V);
 	N = normalize(gl_NormalMatrix * gl_Normal);
 	
-	reflectVec = reflect(V, N);
-	eyeVec = -V;
+	vReflect = reflect(V, N);
 	
-	// gl_Position = ftransform(); 
 	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 }
