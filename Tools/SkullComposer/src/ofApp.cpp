@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetFrameRate(60);
+
     radius = 180.f;
 	center.set(ofGetWidth()*.5, ofGetHeight()*.5, 0);
 
@@ -36,18 +38,25 @@ void ofApp::initGUI(){
     lightParams.add(light2Color.set("light2Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
     lightParams.add(drawDebugLights.set("drawDebugLights", true));
 
+    fresnelParams.add(mRefractionRatio.set("mRefractionRatio", 1.02, 0, 2.0));
+    fresnelParams.add(mFresnelBias.set("mFresnelBias", 0.1, 0, 1.0));
+    fresnelParams.add(mFresnelPower.set("mFresnelPower", 2.0, 0, 5.0));
+    fresnelParams.add(mFresnelScale.set("mFresnelScale", 1.0, 0, 1.0));
+
     string guiFile = "settings.xml";
     gui.setup("settings", guiFile);
     gui.add(sceneParams);
     gui.add(materialParams);
     gui.add(renderParams);
     gui.add(lightParams);
+    gui.add(fresnelParams);
     gui.loadFromFile(guiFile);
 }
 
 //--------------------------------------------------------------
 void ofApp::initShader(){
-    shader.load("shaders/reflection");
+//    shader.load("shaders/reflection");
+    shader.load("shaders/fresnel");
 }
 
 //--------------------------------------------------------------
@@ -66,6 +75,8 @@ void ofApp::initModel(){
 //    model.loadModel("models/skull-01.3ds", true);
 
     primitive.setRadius(200);
+//    primitive.set(200);
+//    primitive.set(200, 300);
 }
 
 //--------------------------------------------------------------
@@ -127,14 +138,27 @@ void ofApp::draw(){
     shader.setUniform4f("material.emission", (float)emissive->r/255, (float)emissive->g/255, (float)emissive->b/255, (float)emissive->a/255);
     shader.setUniform1f("material.shininess", shininess);
 
+    shader.setUniform1f("mRefractionRatio", mRefractionRatio);
+    shader.setUniform1f("mFresnelBias", mFresnelBias);
+    shader.setUniform1f("mFresnelPower", mFresnelPower);
+    shader.setUniform1f("mFresnelScale", mFresnelScale);
+
     ofPushMatrix();
-    ofTranslate(center.x + gui.getWidth() * 0.5, center.y + 50, -300);
-//    model.drawFaces();
-//    ofSphere(100);
-    primitive.drawFaces();
+//    ofTranslate(center.x + gui.getWidth() * 0.5 - 300, center.y - 300, -300);
+    ofTranslate(mouseX, mouseY, -100);
+//    primitive.drawFaces();
+    model.drawFaces();
     ofPopMatrix();
 
     shader.end();
+
+    // draw cube map
+    ofPushMatrix();
+    ofTranslate(center.x, center.y);
+    ofRotate(180, 0, 0, 1);
+    cubeMap.drawSkybox(2000);
+    ofPopMatrix();
+
     cubeMap.unbind();
 
     light1.disable();

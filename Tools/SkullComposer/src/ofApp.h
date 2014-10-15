@@ -39,6 +39,7 @@ class ofApp : public ofBaseApp{
 		ofParameterGroup materialParams;
 		ofParameterGroup renderParams;
 		ofParameterGroup lightParams;
+		ofParameterGroup fresnelParams;
 
 		ofParameter<ofColor> backgroundColor;
 		ofParameter<ofColor> emissive;
@@ -52,7 +53,10 @@ class ofApp : public ofBaseApp{
 		ofParameter<ofColor> light2Color;
 		ofParameter<bool> autoRotate;
 		ofParameter<bool> drawDebugLights;
-//		ofParameter<ofVec3f> light2Position;
+        ofParameter<float> mRefractionRatio;
+        ofParameter<float> mFresnelBias;
+        ofParameter<float> mFresnelPower;
+        ofParameter<float> mFresnelScale;
 
 		ofShader shader;
 		ofxAssimpModelLoader model;
