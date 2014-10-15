@@ -1,3 +1,11 @@
+/**
+* @author brunoimbrizi.com
+*
+* Based on
+* http://www.john-chapman.net/content.php?id=3
+* https://github.com/mrdoob/three.js/blob/master/src/renderers/shaders/ShaderChunk/lights_phong_fragment.glsl
+*/
+
 #version 120
 #extension GL_EXT_gpu_shader4 : require
 

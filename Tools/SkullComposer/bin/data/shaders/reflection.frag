@@ -1,5 +1,12 @@
+/**
+* @author brunoimbrizi.com
+*
+* Based on
+* http://www.john-chapman.net/content.php?id=3
+* https://github.com/mrdoob/three.js/blob/master/src/renderers/shaders/ShaderChunk/lights_phong_fragment.glsl
+*/
+
 #version 120
-#extension GL_EXT_gpu_shader4 : require
 
 #define MAX_LIGHTS 3
 
@@ -130,12 +137,12 @@ void directional(in gl_LightSourceParameters light, inout LightingResults result
 void main() {
 	// normal map
 	// gl_FragColor = vec4((N + vec3(1.0, 1.0, 1.0)) / 2.0, 1.0);
-	
+
 
 	// lights
 	LightingResults results;
-	results.diffuse = vec4(0.0, 0.0, 0.0, 1.0);
-	results.specular = vec4(0.0, 0.0, 0.0, 1.0);
+	results.diffuse = vec4(0.0);
+	results.specular = vec4(0.0);
 
 	for (int i = 0; i < MAX_LIGHTS; i ++) {
 		if (gl_LightSource[i].position.w != 0.0) { 			// with openFrameworks this is always true because ofLight.position is ofVec3f
