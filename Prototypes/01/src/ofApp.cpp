@@ -24,12 +24,16 @@ void ofApp::setup(){
 
 	cubeMapShader.load("shaders/CubeMap");
 
+    /*
 	cubeMap.loadImages("mountains/xpos.jpg",
                        "mountains/xneg.jpg",
                        "mountains/ypos.jpg",
                        "mountains/yneg.jpg",
                        "mountains/zpos.jpg",
                        "mountains/zneg.jpg");
+                       */
+
+    cubeMap.initEmptyTextures( 512 );
 
 //    glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
@@ -60,6 +64,20 @@ void ofApp::update(){
 						   sin(ofGetElapsedTimef()*.8f) * radius * 2 + center.y,
 						   -cos(ofGetElapsedTimef()*.8f) * radius * 2 + center.z);
     spotLight.setPosition( mouseX, mouseY, -300);
+
+
+    for( int i = 0; i < 6; i++ ) {
+        cubeMap.beginDrawingInto2D( GL_TEXTURE_CUBE_MAP_POSITIVE_X + i );
+
+        ofClear(0,0,0);
+
+//        ofLine(0,0, cubeMap.getWidth(), cubeMap.getHeight() );
+//        ofLine(cubeMap.getWidth(), 0, 0, cubeMap.getHeight() );
+
+        ofCircle(cos(ofGetElapsedTimef()*.6f) * 100 + 100, sin(ofGetElapsedTimef()*.6f) * 100 + 100, 40);
+
+        cubeMap.endDrawingInto2D();
+    }
 }
 
 //--------------------------------------------------------------
@@ -146,7 +164,7 @@ void ofApp::draw(){
 //    ofRotate(180, 0, 0, 1);
 //    ofRotate(ofGetElapsedTimef() * 4, 0, 1.0, 0.0);
 
-//    cubeMap.bind();
+    cubeMap.bind();
     cubeMapShader.begin();
 //    material.begin();
     cubeMapShader.setUniform1i("envMap", 0);
@@ -164,11 +182,12 @@ void ofApp::draw(){
 //	ofDrawSphere( 0,0,0, radius);
 //    ofPopMatrix();
 
-//    cubeMap.drawSkybox(500);
     model.drawFaces();
-//    cubeMapShader.end();
+//    ofSphere(200);
+    cubeMapShader.end();
 //    material.end();
-//    cubeMap.unbind();
+    cubeMap.drawSkybox(2000);
+    cubeMap.unbind();
 
     ofPopMatrix();
 
