@@ -161,7 +161,7 @@ void main() {
 
 
 	// environment reflection
-	vec4 cubeColor = textureCube(envMap, vec3(vReflect.x, -vReflect.y, vReflect.z));
+	vec4 cubeColor = textureCube(envMap, vec3(-vReflect.x, -vReflect.y, vReflect.z));
 
 	if (combineEnvironmentMode == 1) {
 		gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz, reflectivity);
