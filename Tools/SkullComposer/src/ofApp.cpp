@@ -21,7 +21,6 @@ void ofApp::initGUI(){
     sceneParams.setName("scene");
 	sceneParams.add(backgroundColor.set("backgroundColor", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255)));
 	sceneParams.add(drawSkybox.set("drawSkybox", false));
-//	sceneParams.add(autoRotate.set("autoRotate", true));
 
     materialParams.setName("material");
 	materialParams.add(emissive.set("emissive", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
@@ -36,7 +35,9 @@ void ofApp::initGUI(){
 
 	lightParams.setName("light");
     lightParams.add(light1Color.set("light1Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
+    lightParams.add(light1Position.set("light1Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(500)));
     lightParams.add(light2Color.set("light2Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
+    lightParams.add(light2Position.set("light2Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(500)));
     lightParams.add(drawDebugLights.set("drawDebugLights", true));
 
     fresnelParams.setName("fresnel");
@@ -69,7 +70,7 @@ void ofApp::initShader(){
 }
 
 //--------------------------------------------------------------
-void ofApp::initCubeMap(){
+void ofApp::initCubeMap() {
     cubeMap.loadImages("textures/xpos.jpg",
                        "textures/xneg.jpg",
                        "textures/ypos.jpg",
@@ -104,12 +105,16 @@ void ofApp::update(){
     light1.setDiffuseColor(ofColor(light1Color));
     light2.setDiffuseColor(ofColor(light2Color));
 
+    /*
     light1.setPosition(cos(ofGetElapsedTimef()*.6f) * radius * 2 + center.x,
 						   sin(ofGetElapsedTimef()*.8f) * radius * 2 + center.y,
 						   -cos(ofGetElapsedTimef()*.8f) * radius * 2 + center.z);
+						   */
+//    light2.setOrientation( ofVec3f( 0, cos(ofGetElapsedTimef()) * RAD_TO_DEG, 0) );
 
-    light2.setOrientation( ofVec3f( 0, cos(ofGetElapsedTimef()) * RAD_TO_DEG, 0) );
-    light2.setPosition( mouseX, mouseY, 100);
+    light1.setPosition(light1Position);
+    light2.setPosition(light2Position);
+    light2Position.set(ofVec3f(mouseX, mouseY, light2Position.get().z));
 }
 
 //--------------------------------------------------------------

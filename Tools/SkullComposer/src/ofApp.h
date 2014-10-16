@@ -52,6 +52,8 @@ class ofApp : public ofBaseApp{
 		ofParameter<bool> useFresnelShader;
 		ofParameter<ofColor> light1Color;
 		ofParameter<ofColor> light2Color;
+		ofParameter<ofVec3f> light1Position;
+		ofParameter<ofVec3f> light2Position;
 		ofParameter<bool> autoRotate;
 		ofParameter<bool> drawDebugLights;
 		ofParameter<bool> drawSkybox;
