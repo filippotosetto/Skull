@@ -18,6 +18,7 @@ void RectsScene::setup() {
     
     AbstractScene::setup();
     
+    _r = _g = _b = 0;
 //    setupCircles();
 }
 
@@ -27,6 +28,11 @@ void RectsScene::update() {
     AbstractScene::update();
     
 
+    if (isShowing || isHiding) {
+        ofBackground(_r, _g, _b);
+        return;
+    }
+    
     // audio data
     float * audioData = new float[numberOfBins];
     AudioManager::getFFT()->setMaxDecay(maxDecay);
@@ -59,49 +65,38 @@ void RectsScene::update() {
 //--------------------------------------------------------------
 void RectsScene::hide() {
     
-    AbstractScene::hide(600);
+    AbstractScene::hide(2000);
     
-    ofBackground(0);
-//    float tx = (STAGE_WIDTH - rect.width) / 2;
-//    float tw = (STAGE_WIDTH + rect.width) / 2;
-//    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_OUT_QUART);
-//    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.3f, EASE_OUT_QUART);
-//    Tweenzor::addCompleteListener(Tweenzor::getTween(&rect.width), this, &ExampleScene::onRectSlideOut);
-    
+    Tweenzor::add(&_r, 4.f, 0.f, 0.f, 5.f, EASE_OUT_QUART);
+    Tweenzor::add(&_g, 68.f, 0.f, 0.f, 5.f, EASE_OUT_QUART);
+    Tweenzor::add(&_b, 148.f, 0.f, 0.f, 5.f, EASE_OUT_QUART);
+
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_r), this, &RectsScene::onBackroundChange);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_g), this, &RectsScene::onBackroundChange);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_b), this, &RectsScene::onBackroundChange);
 }
 
 //--------------------------------------------------------------
 void RectsScene::show() {
     
-    AbstractScene::show(600);
+    AbstractScene::show(2000);
     
-//    ofBackground(4, 68, 148);
+    Tweenzor::add(&_r, 0.f, 4.f, 0.f, 5.f, EASE_OUT_QUART);
+    Tweenzor::add(&_g, 0.f, 68.f, 0.f, 5.f, EASE_OUT_QUART);
+    Tweenzor::add(&_b, 0.f, 148.f, 0.f, 5.f, EASE_OUT_QUART);
     
-    Tweenzor::add(&_r, 0.f, 4.f, 0.f, 2.f);
-    Tweenzor::add(&_g, 0.f, 68.f, 0.f, 2.f);
-    Tweenzor::add(&_b, 0.f, 148.f, 0.f, 2.f);
-
-    //    float tx = (STAGE_WIDTH - rect.width) / 2;
-    //    float tw = (STAGE_WIDTH + rect.width) / 2;
-    //    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_OUT_QUART);
-    //    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.3f, EASE_OUT_QUART);
-    Tweenzor::addCompleteListener(Tweenzor::getTween(&_r), this, &RectsScene::onBackroundShow);
-    Tweenzor::addCompleteListener(Tweenzor::getTween(&_g), this, &RectsScene::onBackroundShow);
-    Tweenzor::addCompleteListener(Tweenzor::getTween(&_b), this, &RectsScene::onBackroundShow);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_r), this, &RectsScene::onBackroundChange);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_g), this, &RectsScene::onBackroundChange);
+    Tweenzor::addCompleteListener(Tweenzor::getTween(&_b), this, &RectsScene::onBackroundChange);
 
 }
 
 
-void RectsScene::onBackroundShow(float* arg) {
+void RectsScene::onBackroundChange(float* arg) {
     
-//    float tw = rectSize;
-//    float tx = (STAGE_WIDTH - tw) / 2;
-//    Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.3f, EASE_IN_OUT_QUART);
-//    Tweenzor::add(&rect.x, rect.x, tx, 0.f, 0.3f, EASE_IN_OUT_QUART);
     Tweenzor::removeCompleteListener(Tweenzor::getTween(&_r));
     Tweenzor::removeCompleteListener(Tweenzor::getTween(&_g));
     Tweenzor::removeCompleteListener(Tweenzor::getTween(&_b));
-    
 }
 
 //--------------------------------------------------------------
