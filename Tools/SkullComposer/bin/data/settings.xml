@@ -24,27 +24,29 @@
 		<drawSkybox>0</drawSkybox>
 		</scene>
 		<material>
-			<emissive>14, 16, 38, 255</emissive>
-			<diffuse>63, 115, 219, 255</diffuse>
-			<specular>70, 179, 120, 255</specular>
+			<emissive>0, 0, 0, 255</emissive>
+			<diffuse>83, 71, 102, 255</diffuse>
+			<specular>166, 108, 111, 255</specular>
 			<shininess>10</shininess>
-			<reflectivity>0.459184</reflectivity>
+			<reflectivity>0.102041</reflectivity>
 		</material>
 		<render>
 			<combineLightsMode>0</combineLightsMode>
-			<combineEnvironmentMode>0</combineEnvironmentMode>
+			<combineEnvironmentMode>2</combineEnvironmentMode>
 		</render>
 		<light>
-			<light1Color>70, 140, 0, 255</light1Color>
-			<light2Color>189, 46, 255, 255</light2Color>
-		<drawDebugLights>1</drawDebugLights>
+			<light1Color>255, 255, 255, 255</light1Color>
+			<light2Color>0, 0, 0, 255</light2Color>
+		<drawDebugLights>0</drawDebugLights>
+		<light1Position>479.175, 203.249, 21.0329</light1Position>
+			<light2Position>226, 60, 0</light2Position>
 		</light>
 	<fresnel>
 			<useFresnelShader>0</useFresnelShader>
-			<refractionRatio>1.02</refractionRatio>
-			<fresnelBias>0.1</fresnelBias>
-			<fresnelPower>2</fresnelPower>
-			<fresnelScale>1</fresnelScale>
+			<refractionRatio>1.02041</refractionRatio>
+			<fresnelBias>0.214286</fresnelBias>
+			<fresnelPower>1.19898</fresnelPower>
+			<fresnelScale>0</fresnelScale>
 		</fresnel>
 	</settings>
 </group>

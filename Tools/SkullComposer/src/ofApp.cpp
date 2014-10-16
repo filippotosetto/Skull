@@ -71,17 +71,24 @@ void ofApp::initShader(){
 
 //--------------------------------------------------------------
 void ofApp::initCubeMap() {
+    /*
     cubeMap.loadImages("textures/xpos.jpg",
                        "textures/xneg.jpg",
                        "textures/ypos.jpg",
                        "textures/yneg.jpg",
                        "textures/zpos.jpg",
                        "textures/zneg.jpg");
+                       */
+
+    cubeMap.initEmptyTextures(512);
+
+    // fbo
+    fbo.allocate(1024, 1024, GL_RGBA);
 }
 
 //--------------------------------------------------------------
 void ofApp::initModel(){
-    model.loadModel("models/skull-01.dae", true);
+    model.loadModel("models/skull-01.dae", false);
 //    model.loadModel("models/skull-01.3ds", true);
 
     primitive.setRadius(200);
@@ -115,6 +122,31 @@ void ofApp::update(){
     light1.setPosition(light1Position);
     light2.setPosition(light2Position);
     light2Position.set(ofVec3f(mouseX, mouseY, light2Position.get().z));
+
+    fbo.begin();
+    ofClear(0, 0);
+    ofPushStyle();
+    ofSetColor(ofColor::red);
+    ofRect(0, 120, cos(ofGetElapsedTimef()*.6f) * 256 + 256, 40);
+    ofRect(0, 260, sin(ofGetElapsedTimef()*.6f) * 256 + 256, 40);
+    ofCircle(cos(ofGetElapsedTimef()*.6f) * 100 + 256, sin(ofGetElapsedTimef()*.2f) * 100 + 256, 20);
+    ofPopStyle();
+    fbo.end();
+
+    cubeMap.beginDrawingInto2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X);
+    ofClear(0, 0);
+    fbo.draw(0, 0);
+    cubeMap.endDrawingInto2D();
+
+    cubeMap.beginDrawingInto2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X);
+    ofClear(0, 0);
+    fbo.draw(0, 0);
+    cubeMap.endDrawingInto2D();
+
+    cubeMap.beginDrawingInto2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z);
+    ofClear(0, 0);
+    fbo.draw(0, 0);
+    cubeMap.endDrawingInto2D();
 }
 
 //--------------------------------------------------------------
@@ -162,6 +194,7 @@ void ofApp::draw(){
     cam.setDistance(1000);
     cam.setVFlip(true);
     model.drawFaces();
+//    cubeMap.drawSkybox(2000);
     cam.end();
 
 //    ofPushMatrix();

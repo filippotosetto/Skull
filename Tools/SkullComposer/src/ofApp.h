@@ -74,4 +74,6 @@ class ofApp : public ofBaseApp{
 
 		ofEasyCam cam;
 
+		ofFbo fbo;
+
 };
