@@ -42,6 +42,7 @@ private:
     float _g;
     float _b;
     
-    void onBackroundShow(float* arg);
+    void onBackroundChange(float* arg);
 };
+
 #endif /* defined(__Main__RectsScene__) */

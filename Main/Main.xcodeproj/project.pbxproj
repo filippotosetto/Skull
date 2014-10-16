@@ -330,8 +330,8 @@
 		4120366119E0844C0091CE01 /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				4120366219E0844C0091CE01 /* AudioManager.cpp */,
 				4120366319E0844C0091CE01 /* AudioManager.h */,
+				4120366219E0844C0091CE01 /* AudioManager.cpp */,
 			);
 			path = audio;
 			sourceTree = "<group>";
