@@ -38,6 +38,8 @@
 		41463D3C19E3315C008922D7 /* TweenSelector.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0B19E3314C008922D7 /* TweenSelector.h */; };
 		41463D3D19E3315C008922D7 /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0C19E3314C008922D7 /* Tweenzor.cpp */; };
 		41463D3E19E3315C008922D7 /* Tweenzor.h in Sources */ = {isa = PBXBuildFile; fileRef = 41463D0D19E3314C008922D7 /* Tweenzor.h */; };
+		41AA1B0319F6F90D0088997D /* StripesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41AA1B0119F6F90D0088997D /* StripesScene.cpp */; };
+		41AA1B0619F6F9C10088997D /* Stripe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41AA1B0419F6F9C10088997D /* Stripe.cpp */; };
 		41BD248019E1ACFB00DA71F6 /* CirclesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */; };
 		41BD248A19E1AE4D00DA71F6 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD248819E1AE4D00DA71F6 /* Circle.cpp */; };
 		47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F689F55F2F059DD1E8C3BE6B /* ofxSliderGroup.cpp */; };
@@ -153,6 +155,10 @@
 		41463D0B19E3314C008922D7 /* TweenSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
 		41463D0C19E3314C008922D7 /* Tweenzor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
 		41463D0D19E3314C008922D7 /* Tweenzor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
+		41AA1B0119F6F90D0088997D /* StripesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StripesScene.cpp; path = stripes/StripesScene.cpp; sourceTree = "<group>"; };
+		41AA1B0219F6F90D0088997D /* StripesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StripesScene.h; path = stripes/StripesScene.h; sourceTree = "<group>"; };
+		41AA1B0419F6F9C10088997D /* Stripe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stripe.cpp; path = stripes/Stripe.cpp; sourceTree = "<group>"; };
+		41AA1B0519F6F9C10088997D /* Stripe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stripe.h; path = stripes/Stripe.h; sourceTree = "<group>"; };
 		41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CirclesScene.cpp; path = circles/CirclesScene.cpp; sourceTree = "<group>"; };
 		41BD247F19E1ACFB00DA71F6 /* CirclesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CirclesScene.h; path = circles/CirclesScene.h; sourceTree = "<group>"; };
 		41BD248819E1AE4D00DA71F6 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Circle.cpp; path = circles/Circle.cpp; sourceTree = "<group>"; };
@@ -339,6 +345,7 @@
 		4120366519E0844C0091CE01 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				41AA1B0019F6F8ED0088997D /* stripes */,
 				410C404019E687080090A159 /* rects */,
 				41BD247D19E1ACD000DA71F6 /* circles */,
 				4120367A19E1404C0091CE01 /* example */,
@@ -416,6 +423,17 @@
 				41463D0D19E3314C008922D7 /* Tweenzor.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		41AA1B0019F6F8ED0088997D /* stripes */ = {
+			isa = PBXGroup;
+			children = (
+				41AA1B0219F6F90D0088997D /* StripesScene.h */,
+				41AA1B0119F6F90D0088997D /* StripesScene.cpp */,
+				41AA1B0519F6F9C10088997D /* Stripe.h */,
+				41AA1B0419F6F9C10088997D /* Stripe.cpp */,
+			);
+			name = stripes;
 			sourceTree = "<group>";
 		};
 		41BD247D19E1ACD000DA71F6 /* circles */ = {
@@ -744,6 +762,7 @@
 			files = (
 				41463D3719E3315C008922D7 /* ofxTweenzor.h in Sources */,
 				41463D3819E3315C008922D7 /* Tween.cpp in Sources */,
+				41AA1B0619F6F9C10088997D /* Stripe.cpp in Sources */,
 				41463D3919E3315C008922D7 /* Tween.h in Sources */,
 				41463D3A19E3315C008922D7 /* TweenEvent.h in Sources */,
 				41463D3B19E3315C008922D7 /* TweenFunctions.h in Sources */,
@@ -777,6 +796,7 @@
 				41BD248A19E1AE4D00DA71F6 /* Circle.cpp in Sources */,
 				92341401421A0B920082DDBD /* ofxGuiGroup.cpp in Sources */,
 				E7AC2657E8C96AAAEE1D9B19 /* ofxLabel.cpp in Sources */,
+				41AA1B0319F6F90D0088997D /* StripesScene.cpp in Sources */,
 				D41B21C1AB6D1BBB8EF5A522 /* ofxPanel.cpp in Sources */,
 				3D5B05390E4B441DBA465D48 /* ofxSlider.cpp in Sources */,
 				4120366E19E0844C0091CE01 /* AudioManager.cpp in Sources */,

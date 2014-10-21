@@ -21,7 +21,7 @@ void Rectangle::draw() {
         glRotatef(rotation + 45,0,0,1);
     
         ofSetColor(255);
-        ofRect(location.x, location.y, 10, width, height);
+        ofRect(location.x, location.y, width, height);
     
     glPopMatrix();
 }

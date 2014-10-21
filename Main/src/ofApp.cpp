@@ -4,6 +4,7 @@
 #include "scene/example/ExampleScene.h"
 #include "scene/circles/CirclesScene.h"
 #include "scene/rects/RectsScene.h"
+#include "scene/stripes/StripesScene.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -143,7 +144,9 @@ void ofApp::initScenes() {
     SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
     SceneManager::add(new CirclesScene(SceneManager::getNum(), "circles"));
     SceneManager::add(new RectsScene(SceneManager::getNum(), "rects"));
+    SceneManager::add(new StripesScene(SceneManager::getNum(), "stripes"));
 
+    
     SceneManager::navto(0);
 
 }
