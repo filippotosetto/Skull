@@ -6,13 +6,60 @@ void ofApp::setup(){
     ofBackground(0, 0);
 
 //    model.loadModel("skull-01.3ds", true);
-    model.loadModel("skull-01.dae", true);
+//    model.loadModel("skull-01.dae", true);
+    model.loadModel("sphere8x6.3ds", true);
+//    model.loadModel("sphere8x6.dae", true);
 
     radius		= 180.f;
 	center.set(ofGetWidth()*.5, ofGetHeight()*.5, 0);
 
     box.set(50);
     box.setPosition(ofGetWidth()*.5, ofGetHeight()*.5, 0);
+
+    sphere.set(200, 5);
+//    sphere.set(200);
+    ofMesh& sphereMesh = sphere.getMesh();
+//    ofMesh sphereMesh = model.getMesh(0);
+
+    flatSphere.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+    flatSphere.addIndices(sphereMesh.getIndices());
+
+    for (int i = 0; i < sphereMesh.getNumIndices(); i += 3) {
+        ofVec3f v0 = sphereMesh.getVertex(i + 0);
+        ofVec3f v1 = sphereMesh.getVertex(i + 1);
+        ofVec3f v2 = sphereMesh.getVertex(i + 2);
+
+        flatSphere.addVertex(v0);
+        flatSphere.addVertex(v1);
+        flatSphere.addVertex(v2);
+
+        ofVec3f n0 = sphereMesh.getNormal(i + 0);
+        ofVec3f n1 = sphereMesh.getNormal(i + 1);
+        ofVec3f n2 = sphereMesh.getNormal(i + 2);
+        ofVec3f nn = (n0 + n1 + n2) / 3;
+
+        flatSphere.addNormal(nn);
+        flatSphere.addNormal(nn);
+        flatSphere.addNormal(nn);
+
+        ofVec3f u = v1 - v0;
+        ofVec3f v = v2 - v0;
+
+        ofVec3f normal = ofVec3f(u.y * v.z - u.z * v.y, u.z * v.x - u.x * v.z, u.x * v.y - u.y * v.x);
+        normal *= -1;
+
+//        flatSphere.addNormal(normal);
+//        flatSphere.addNormal(normal);
+//        flatSphere.addNormal(normal);
+    }
+
+
+//    flatSphere.mergeDuplicateVertices();
+
+//    cout << "numIndices: " << sphereMesh.getNumIndices() << " numVertices: " << sphereMesh.getNumVertices() << " faces: " << sphereMesh.getUniqueFaces().size() << " face normals: " << sphereMesh.getFaceNormals().size() << endl;
+//    cout << "numIndices: " << flatSphere.getNumIndices() << " numVertices: " << flatSphere.getNumVertices() << endl;
+//    cout << "numIndices: " << model.getMesh(0).getNumIndices() << " numVertices: " << model.getMesh(0).getNumVertices() << " faces: " << model.getMesh(0).getUniqueFaces().size() << " face normals: " << model.getMesh(0).getFaceNormals().size() << endl;
+    cout << "n: " << model.getMesh(0).getNormal(0) << "| " << model.getMesh(0).getNormal(1) <<  "| " << model.getMesh(0).getNormal(2) << endl;
 
     /*
     if(ofGetGLProgrammableRenderer()){
@@ -24,16 +71,16 @@ void ofApp::setup(){
 
 	cubeMapShader.load("shaders/CubeMap");
 
-    /*
+//    /*
 	cubeMap.loadImages("mountains/xpos.jpg",
                        "mountains/xneg.jpg",
                        "mountains/ypos.jpg",
                        "mountains/yneg.jpg",
                        "mountains/zpos.jpg",
                        "mountains/zneg.jpg");
-                       */
+//                       */
 
-    cubeMap.initEmptyTextures( 512 );
+//    cubeMap.initEmptyTextures( 512 );
 
 //    glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
@@ -155,12 +202,13 @@ void ofApp::draw(){
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, material_Se);
     */
 
+    ofEnableDepthTest();
     ofEnableLighting();
     pointLight.enable();
     spotLight.enable();
 
-    ofPushMatrix();
-    ofTranslate(ofGetWidth()*.5, ofGetHeight()*.5, 0);
+//    ofPushMatrix();
+//    ofTranslate(ofGetWidth()*.5, ofGetHeight()*.5, 0);
 //    ofRotate(180, 0, 0, 1);
 //    ofRotate(ofGetElapsedTimef() * 4, 0, 1.0, 0.0);
 
@@ -177,19 +225,26 @@ void ofApp::draw(){
     cubeMapShader.setUniform1f("material.shininess", 120.0);
 
 //    ofPushMatrix();
-    ofTranslate(0, 0, -300);
+//    ofTranslate(0, 0, -300);
 //    ofRotate(ofGetElapsedTimef() * .8 * RAD_TO_DEG, 0, 1, 0);
 //	ofDrawSphere( 0,0,0, radius);
 //    ofPopMatrix();
 
+    cam.begin();
+    cam.setDistance(1000);
+    cam.setVFlip(true);
     model.drawFaces();
-//    ofSphere(200);
+//    sphere.draw();
+//    flatSphere.draw();
+    cam.end();
+
+
     cubeMapShader.end();
 //    material.end();
-    cubeMap.drawSkybox(2000);
+//    cubeMap.drawSkybox(2000);
     cubeMap.unbind();
 
-    ofPopMatrix();
+//    ofPopMatrix();
 
     box.rotate(spinX, 1.0, 0.0, 0.0);
     box.rotate(spinY, 0, 1.0, 0.0);
@@ -201,6 +256,7 @@ void ofApp::draw(){
     spotLight.disable();
     pointLight.disable();
     ofDisableLighting();
+    ofDisableDepthTest();
 
     model.setRotation(0, ofGetElapsedTimef() * -20, 0.0, 1.0, 0.0);
 
