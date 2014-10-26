@@ -13,6 +13,7 @@
 uniform samplerCube envMap;
 uniform int combineLightsMode = 0;
 uniform int combineEnvironmentMode = 1;
+uniform bool reflectionGrayscale;
 uniform float reflectivity;
 
 uniform gl_MaterialParameters material;
@@ -98,8 +99,8 @@ void spot(in gl_LightSourceParameters light, inout LightingResults results) {
 				float specular = max(0.0, dot(reflection, normalize(V)));
 				results.specular += material.specular * light.diffuse * pow(specular, material.shininess) * attenuation;
 			}
+			// three.js mode
 			else {
-				// three.js mode
 				vec3 halfVector = normalize(lightDirection + normalize(V));
 				float dotNormalHalf = max( dot( N, halfVector ), 0.0 );
 				float specularWeight = max( pow( dotNormalHalf, material.shininess ), 0.0 );
@@ -128,7 +129,7 @@ void directional(in gl_LightSourceParameters light, inout LightingResults result
 	if (dotProduct > 0.0) {
 		vec3 reflection = reflect(lightDirection, N);
 		float specular = max(0.0, dot(reflection, normalize(V)));
-		results.specular += light.specular * pow(specular, material.shininess);
+		results.specular += light.diffuse * pow(specular, material.shininess);
 	}
 }
 
@@ -144,7 +145,7 @@ void main() {
 	results.specular = vec4(0.0);
 
 	for (int i = 0; i < MAX_LIGHTS; i ++) {
-		if (gl_LightSource[i].position.w != 0.0) { 			// with openFrameworks this is always true because ofLight.position is ofVec3f
+		if (gl_LightSource[i].position.w != 0.0) {
 			if (gl_LightSource[i].spotExponent != 0.0) {
 				spot(gl_LightSource[i], results);
 			}
@@ -162,6 +163,11 @@ void main() {
 
 	// environment reflection
 	vec4 cubeColor = textureCube(envMap, vec3(-vReflect.x, -vReflect.y, vReflect.z));
+	
+	if (reflectionGrayscale) {
+		float gray = dot(cubeColor.rgb, vec3(0.299, 0.587, 0.114));
+		cubeColor = vec4(gray, gray, gray, 1.0);
+	}
 
 	if (combineEnvironmentMode == 1) {
 		gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz, reflectivity);
