@@ -20,7 +20,7 @@ void ofApp::setup(){
     plane.resizeToTexture(fbo.getTextureReference());
 
     AudioManager::init();
-    sceneManager = SceneManager();
+    SceneManager::init();
     Tweenzor::init();
 
     initGUI();
@@ -45,11 +45,11 @@ void ofApp::update(){
     fbo.begin();
 	ofClear(0, 0, 0, 0);
 
-    sceneManager.update();
+    SceneManager::update();
     fbo.end();
 
     // set skull delegate to current scene
-    skull.delegate = sceneManager.delegate;
+    skull.delegate = SceneManager::Instance()->delegate;
     // update 3D
     skull.update();
 
@@ -89,7 +89,7 @@ void ofApp::draw(){
 
     if (guiVisible) {
         gui.draw();
-        sceneManager.getCurrentScene()->gui.draw();
+        SceneManager::getCurrentScene()->gui.draw();
     }
 
 
@@ -143,14 +143,14 @@ void ofApp::initDrags() {
 //--------------------------------------------------------------
 void ofApp::initScenes() {
 
-    sceneManager.add(new AbstractScene(sceneManager.getNum(), "abstract"));
-    sceneManager.add(new ExampleScene(sceneManager.getNum(), "example"));
-    sceneManager.add(new CirclesScene(sceneManager.getNum(), "circles"));
-    sceneManager.add(new RectsScene(sceneManager.getNum(), "rects"));
-    sceneManager.add(new StripesScene(sceneManager.getNum(), "stripes"));
+    SceneManager::add(new AbstractScene(SceneManager::getNum(), "abstract"));
+    SceneManager::add(new ExampleScene(SceneManager::getNum(), "example"));
+    SceneManager::add(new CirclesScene(SceneManager::getNum(), "circles"));
+    SceneManager::add(new RectsScene(SceneManager::getNum(), "rects"));
+    SceneManager::add(new StripesScene(SceneManager::getNum(), "stripes"));
     
     
-    sceneManager.navto(0);
+    SceneManager::navto(0);
 
 }
 
@@ -228,15 +228,14 @@ void ofApp::keyReleased(int key){
     switch (key) {
 
         case OF_KEY_RIGHT: {
-            sceneManager.next();
+            SceneManager::next();
             break;
         }
-
+            
         case OF_KEY_LEFT: {
-            sceneManager.prev();
+            SceneManager::prev();
             break;
         }
-
         case 'g': {
             guiVisible = !guiVisible;
             break;

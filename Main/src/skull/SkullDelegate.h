@@ -16,7 +16,7 @@ public:
     
     // the default implementation makes this function optional
     // to make the implementation mandatory for the subclass remove {} and add = 0
-    virtual ofColor getSkullColor() { return ofColor::white; };
+    virtual ofColor getSkullColor() { return NULL; };
 };
 
 #endif
