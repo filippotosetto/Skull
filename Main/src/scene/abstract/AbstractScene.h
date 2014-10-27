@@ -36,14 +36,17 @@ class AbstractScene {
         ofEvent<bool> onShowComplete;
         ofEvent<bool> onHideComplete;
 
+    
+        bool isShowing;
+        bool isHiding;
+    
     protected:
         virtual void initGUI();
 
         int index;
         string name;
 
-        bool isShowing;
-        bool isHiding;
+
         ofxTimer timer;
 
 };

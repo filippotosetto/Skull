@@ -1,6 +1,8 @@
 #include "../abstract/AbstractScene.h"
+#include "../../skull/SkullDelegate.h"
 
-class ExampleScene : public AbstractScene {
+
+class ExampleScene : public AbstractScene, public SkullDelegate {
 
     public:
         ExampleScene();
@@ -13,6 +15,9 @@ class ExampleScene : public AbstractScene {
 
         void initGUI();
 
+        ofColor getSkullColor();
+    
+    
     private:
         ofRectangle rect;
         float rectSize = 20.f;

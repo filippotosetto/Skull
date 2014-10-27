@@ -56,4 +56,6 @@ class ofApp : public ofBaseApp{
 
         // 3D
         Skull skull;
+    
+        SceneManager sceneManager;
 };

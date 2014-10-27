@@ -42,6 +42,8 @@
 		41AA1B0619F6F9C10088997D /* Stripe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41AA1B0419F6F9C10088997D /* Stripe.cpp */; };
 		41BD248019E1ACFB00DA71F6 /* CirclesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */; };
 		41BD248A19E1AE4D00DA71F6 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BD248819E1AE4D00DA71F6 /* Circle.cpp */; };
+		41F6EA4119F8F8B300FF1457 /* Square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41F6EA3F19F8F8B300FF1457 /* Square.cpp */; };
+		41F6EA4419F8F9CD00FF1457 /* SquaresScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41F6EA4219F8F9CD00FF1457 /* SquaresScene.cpp */; };
 		47394C682F897B265693B298 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F689F55F2F059DD1E8C3BE6B /* ofxSliderGroup.cpp */; };
 		7D38DC8021C7B4DAF7A69C2D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFF3F06FBE6B0D7CEDDE8FE5 /* ofxButton.cpp */; };
 		92341401421A0B920082DDBD /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF0C9CB00961FB5339CA25E1 /* ofxGuiGroup.cpp */; };
@@ -155,6 +157,7 @@
 		41463D0B19E3314C008922D7 /* TweenSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
 		41463D0C19E3314C008922D7 /* Tweenzor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
 		41463D0D19E3314C008922D7 /* Tweenzor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
+		419920F219FBB06D006FA780 /* SkullDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkullDelegate.h; sourceTree = "<group>"; };
 		41AA1B0119F6F90D0088997D /* StripesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StripesScene.cpp; path = stripes/StripesScene.cpp; sourceTree = "<group>"; };
 		41AA1B0219F6F90D0088997D /* StripesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StripesScene.h; path = stripes/StripesScene.h; sourceTree = "<group>"; };
 		41AA1B0419F6F9C10088997D /* Stripe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stripe.cpp; path = stripes/Stripe.cpp; sourceTree = "<group>"; };
@@ -163,6 +166,10 @@
 		41BD247F19E1ACFB00DA71F6 /* CirclesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CirclesScene.h; path = circles/CirclesScene.h; sourceTree = "<group>"; };
 		41BD248819E1AE4D00DA71F6 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Circle.cpp; path = circles/Circle.cpp; sourceTree = "<group>"; };
 		41BD248919E1AE4D00DA71F6 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Circle.h; path = circles/Circle.h; sourceTree = "<group>"; };
+		41F6EA3F19F8F8B300FF1457 /* Square.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Square.cpp; path = squares/Square.cpp; sourceTree = "<group>"; };
+		41F6EA4019F8F8B300FF1457 /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Square.h; path = squares/Square.h; sourceTree = "<group>"; };
+		41F6EA4219F8F9CD00FF1457 /* SquaresScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SquaresScene.cpp; path = squares/SquaresScene.cpp; sourceTree = "<group>"; };
+		41F6EA4319F8F9CD00FF1457 /* SquaresScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SquaresScene.h; path = squares/SquaresScene.h; sourceTree = "<group>"; };
 		4A44D4483E4370AF91480DFC /* aiScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = aiScene.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/libs/assimp/include/aiScene.h; sourceTree = SOURCE_ROOT; };
 		4CB11A8DD9233C659BE9FBCD /* ofxAssimpModelLoader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAssimpModelLoader.h; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.h; sourceTree = SOURCE_ROOT; };
 		4EA376CBE9D34280DBD85E02 /* ofxAssimpModelLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAssimpModelLoader.cpp; path = ../../../of_v0.8.4_osx_release/addons/ofxAssimpModelLoader/src/ofxAssimpModelLoader.cpp; sourceTree = SOURCE_ROOT; };
@@ -284,8 +291,9 @@
 		410C403C19E686DB0090A159 /* skull */ = {
 			isa = PBXGroup;
 			children = (
-				410C403D19E686DB0090A159 /* Skull.cpp */,
 				410C403E19E686DB0090A159 /* Skull.h */,
+				410C403D19E686DB0090A159 /* Skull.cpp */,
+				419920F219FBB06D006FA780 /* SkullDelegate.h */,
 			);
 			path = skull;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 		4120366519E0844C0091CE01 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				41F6EA3E19F8F89400FF1457 /* squares */,
 				41AA1B0019F6F8ED0088997D /* stripes */,
 				410C404019E687080090A159 /* rects */,
 				41BD247D19E1ACD000DA71F6 /* circles */,
@@ -445,6 +454,17 @@
 				41BD247E19E1ACFB00DA71F6 /* CirclesScene.cpp */,
 			);
 			name = circles;
+			sourceTree = "<group>";
+		};
+		41F6EA3E19F8F89400FF1457 /* squares */ = {
+			isa = PBXGroup;
+			children = (
+				41F6EA4019F8F8B300FF1457 /* Square.h */,
+				41F6EA3F19F8F8B300FF1457 /* Square.cpp */,
+				41F6EA4319F8F9CD00FF1457 /* SquaresScene.h */,
+				41F6EA4219F8F9CD00FF1457 /* SquaresScene.cpp */,
+			);
+			name = squares;
 			sourceTree = "<group>";
 		};
 		480A780D8D0308AE4A368801 /* ofxGui */ = {
@@ -621,8 +641,8 @@
 				4120366519E0844C0091CE01 /* scene */,
 				4120366B19E0844C0091CE01 /* ui */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -781,6 +801,7 @@
 				4120367719E084720091CE01 /* ofxFFTFile.h in Sources */,
 				4120367819E084720091CE01 /* ofxFFTLive.cpp in Sources */,
 				410C404319E687230090A159 /* RectsScene.cpp in Sources */,
+				41F6EA4419F8F9CD00FF1457 /* SquaresScene.cpp in Sources */,
 				4120367919E084720091CE01 /* ofxFFTLive.h in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
@@ -806,6 +827,7 @@
 				DB46F954E2510AEEDA6DE642 /* ofxXmlSettings.cpp in Sources */,
 				4120367D19E1404C0091CE01 /* ExampleScene.cpp in Sources */,
 				CF008F95E5B30830F06338DE /* tinyxml.cpp in Sources */,
+				41F6EA4119F8F8B300FF1457 /* Square.cpp in Sources */,
 				F66D086234C57E4720DA19FF /* tinyxmlerror.cpp in Sources */,
 				31D4524A8044C19E938536A9 /* tinyxmlparser.cpp in Sources */,
 			);

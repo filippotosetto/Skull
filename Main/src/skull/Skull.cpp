@@ -10,7 +10,6 @@ void Skull::setup() {
 
     model.loadModel("skull.dae", true);
     model.setPosition(STAGE_WIDTH * 0.5, STAGE_HEIGHT * 0.55 , 0);
-
 }
 
 //--------------------------------------------------------------
@@ -33,7 +32,15 @@ void Skull::draw() {
 //    ofTranslate(model.getPosition().x, model.getPosition().y, 0);
 //    ofRotate(-mouseX, 0, 1, 0);
 //    ofTranslate(-model.getPosition().x, -model.getPosition().y, 0);
+    ofPushStyle();
+
+    if(delegate) {
+        ofColor newColor = delegate->getSkullColor();
+        ofSetColor(newColor);
+    }
+    
     model.drawFaces();
+    ofPopStyle();
 //    ofPopMatrix();
 
 
@@ -43,6 +50,5 @@ void Skull::draw() {
     light.disable();
     ofDisableLighting();
     ofDisableSeparateSpecularLight();
-
 }
 
