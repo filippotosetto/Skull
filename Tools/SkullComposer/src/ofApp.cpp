@@ -7,6 +7,9 @@ void ofApp::setup(){
     radius = 180.f;
 	center.set(ofGetWidth()*.5, ofGetHeight()*.5, 0);
 
+    cam.setVFlip(true);
+    cam.setDistance(1000);
+
     initGUI();
     initShader();
     initCubeMap();
@@ -32,12 +35,18 @@ void ofApp::initGUI(){
 	renderParams.setName("render");
 	renderParams.add(combineLightsMode.set("combineLightsMode", 0, 0, 1));
 	renderParams.add(combineEnvironmentMode.set("combineEnvironmentMode", 1, 0, 2));
+	renderParams.add(reflectionGrayscale.set("reflectionGrayscale", true));
+	renderParams.add(useFlatModel.set("useFlatModel", false));
 
 	lightParams.setName("light");
     lightParams.add(light1Color.set("light1Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
-    lightParams.add(light1Position.set("light1Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(500)));
+    lightParams.add(light1Position.set("light1Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(ofGetWidth() + 500)));
+    lightParams.add(light1Attenuation.set("light1Attenuation", 1.0, 0, 10.0));
     lightParams.add(light2Color.set("light2Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
-    lightParams.add(light2Position.set("light2Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(500)));
+    lightParams.add(light2Position.set("light2Position", ofVec3f(-100, 0, 0), ofVec3f(-500), ofVec3f(ofGetWidth() + 500)));
+    lightParams.add(light2Attenuation.set("light2Attenuation", 1.0, 0, 10.0));
+    lightParams.add(light3Color.set("light3Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
+    lightParams.add(light3Orientation.set("light3Orientation", ofVec3f(0, 90, 0), ofVec3f(-180), ofVec3f(180)));
     lightParams.add(drawDebugLights.set("drawDebugLights", true));
 
     fresnelParams.setName("fresnel");
@@ -88,18 +97,18 @@ void ofApp::initCubeMap() {
 
 //--------------------------------------------------------------
 void ofApp::initModel(){
-    model.loadModel("models/skull-01.dae", false);
-//    model.loadModel("models/skull-01.3ds", true);
+    modelFlat.loadModel("models/skull-01.dae", false);
+    modelSmooth.loadModel("models/skull-01.3ds", true);
 
-    primitive.setRadius(200);
-//    primitive.set(200);
-//    primitive.set(200, 300);
+//    primitive.setRadius(200);
 }
 
 //--------------------------------------------------------------
 void ofApp::initLights(){
     sphereDebugLight.setRadius(10);
     ofSetSmoothLighting(true); // set true if model is smooth
+
+    light3.setDirectional();
 
 //    light2.setSpotlight(50, 45);
 }
@@ -111,6 +120,10 @@ void ofApp::update(){
 
     light1.setDiffuseColor(ofColor(light1Color));
     light2.setDiffuseColor(ofColor(light2Color));
+    light3.setDiffuseColor(ofColor(light3Color));
+
+    light1.setAttenuation(light1Attenuation);
+    light2.setAttenuation(light2Attenuation);
 
     /*
     light1.setPosition(cos(ofGetElapsedTimef()*.6f) * radius * 2 + center.x,
@@ -120,15 +133,16 @@ void ofApp::update(){
 //    light2.setOrientation( ofVec3f( 0, cos(ofGetElapsedTimef()) * RAD_TO_DEG, 0) );
 
     light1.setPosition(light1Position);
-    light2.setPosition(light2Position);
     light2Position.set(ofVec3f(mouseX, mouseY, light2Position.get().z));
+    light3.setOrientation(light3Orientation);
 
     fbo.begin();
     ofClear(0, 0);
     ofPushStyle();
-    ofSetColor(ofColor::red);
+    ofSetColor(ofColor::darkGoldenRod);
     ofRect(0, 120, cos(ofGetElapsedTimef()*.6f) * 256 + 256, 40);
-    ofRect(0, 260, sin(ofGetElapsedTimef()*.6f) * 256 + 256, 40);
+    ofRect(0, 200, sin(ofGetElapsedTimef()*.2f) * 256 + 256, 20);
+    ofRect(0, 260, sin(ofGetElapsedTimef()*.4f) * 256 + 256, 40);
     ofCircle(cos(ofGetElapsedTimef()*.6f) * 100 + 256, sin(ofGetElapsedTimef()*.2f) * 100 + 256, 20);
     ofPopStyle();
     fbo.end();
@@ -168,6 +182,7 @@ void ofApp::draw(){
     ofEnableLighting();
     light1.enable();
     light2.enable();
+    light3.enable();
 
     if (!useFresnelShader) {
         shaderReflection.begin();
@@ -175,6 +190,7 @@ void ofApp::draw(){
         shaderReflection.setUniform1f("reflectivity", reflectivity);
         shaderReflection.setUniform1i("combineLightsMode", combineLightsMode);
         shaderReflection.setUniform1i("combineEnvironmentMode", combineEnvironmentMode);
+        shaderReflection.setUniform1f("reflectionGrayscale", reflectionGrayscale);
         shaderReflection.setUniform4f("material.diffuse", (float)diffuse->r/255, (float)diffuse->g/255, (float)diffuse->b/255, (float)diffuse->a/255);
         shaderReflection.setUniform4f("material.specular", (float)specular->r/255, (float)specular->g/255, (float)specular->b/255, (float)specular->a/255);
         shaderReflection.setUniform4f("material.emission", (float)emissive->r/255, (float)emissive->g/255, (float)emissive->b/255, (float)emissive->a/255);
@@ -191,9 +207,8 @@ void ofApp::draw(){
     }
 
     cam.begin();
-    cam.setDistance(1000);
-    cam.setVFlip(true);
-    model.drawFaces();
+    if (useFlatModel) modelFlat.drawFaces();
+    else modelSmooth.drawFaces();
 //    cubeMap.drawSkybox(2000);
     cam.end();
 
@@ -209,6 +224,7 @@ void ofApp::draw(){
 
     light1.disable();
     light2.disable();
+    light3.disable();
     ofDisableLighting();
     ofDisableDepthTest();
 

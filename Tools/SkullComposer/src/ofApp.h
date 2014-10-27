@@ -49,11 +49,17 @@ class ofApp : public ofBaseApp{
 		ofParameter<float> reflectivity;
 		ofParameter<int> combineLightsMode;
 		ofParameter<int> combineEnvironmentMode;
+		ofParameter<bool> reflectionGrayscale;
 		ofParameter<bool> useFresnelShader;
+		ofParameter<bool> useFlatModel;
 		ofParameter<ofColor> light1Color;
 		ofParameter<ofColor> light2Color;
+		ofParameter<ofColor> light3Color;
 		ofParameter<ofVec3f> light1Position;
 		ofParameter<ofVec3f> light2Position;
+		ofParameter<ofVec3f> light3Orientation;
+		ofParameter<float> light1Attenuation;
+		ofParameter<float> light2Attenuation;
 		ofParameter<bool> autoRotate;
 		ofParameter<bool> drawDebugLights;
 		ofParameter<bool> drawSkybox;
@@ -64,9 +70,11 @@ class ofApp : public ofBaseApp{
 
 		ofShader shaderReflection;
 		ofShader shaderFresnel;
-		ofxAssimpModelLoader model;
+		ofxAssimpModelLoader modelFlat;
+		ofxAssimpModelLoader modelSmooth;
 		ofLight light1;
 		ofLight light2;
+		ofLight light3;
 		ofSpherePrimitive sphereDebugLight;
 		ofSpherePrimitive primitive;
 

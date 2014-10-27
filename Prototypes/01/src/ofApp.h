@@ -37,5 +37,10 @@ class ofApp : public ofBaseApp{
         ofShader shader;
         ofShader cubeMapShader;
 
+        ofSpherePrimitive sphere;
+        ofMesh flatSphere;
+
         ofxCubeMap cubeMap;
+
+        ofEasyCam cam;
 };
