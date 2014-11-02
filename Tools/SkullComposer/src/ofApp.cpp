@@ -21,6 +21,8 @@ void ofApp::setup(){
 void ofApp::initGUI(){
     font.loadFont(OF_TTF_SANS, 10, false);
 
+    usePhongShader.addListener(this, &ofApp::onUsePhongShaderChanged);
+
     sceneParams.setName("scene");
 	sceneParams.add(backgroundColor.set("backgroundColor", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255)));
 	sceneParams.add(drawSkybox.set("drawSkybox", false));
@@ -37,6 +39,7 @@ void ofApp::initGUI(){
 	renderParams.add(combineEnvironmentMode.set("combineEnvironmentMode", 1, 0, 2));
 	renderParams.add(reflectionGrayscale.set("reflectionGrayscale", true));
 	renderParams.add(useFlatModel.set("useFlatModel", false));
+	renderParams.add(usePhongShader.set("usePhongShader", false));
 
 	lightParams.setName("light");
     lightParams.add(light1Color.set("light1Color", ofColor(127, 0, 0), ofColor(0, 0), ofColor(255)));
@@ -74,7 +77,7 @@ void ofApp::initGUI(){
 
 //--------------------------------------------------------------
 void ofApp::initShader(){
-    shaderReflection.load("shaders/reflection");
+    shaderReflection.load("shaders/reflection_gouraud");
     shaderFresnel.load("shaders/fresnel");
 }
 
@@ -97,8 +100,8 @@ void ofApp::initCubeMap() {
 
 //--------------------------------------------------------------
 void ofApp::initModel(){
-    modelFlat.loadModel("models/skull-01.dae", false);
-    modelSmooth.loadModel("models/skull-01.3ds", true);
+    modelFlat.loadModel("models/skull-01.dae");
+    modelSmooth.loadModel("models/skull-01.3ds");
 
 //    primitive.setRadius(200);
 }
@@ -106,7 +109,7 @@ void ofApp::initModel(){
 //--------------------------------------------------------------
 void ofApp::initLights(){
     sphereDebugLight.setRadius(10);
-    ofSetSmoothLighting(true); // set true if model is smooth
+//    ofSetSmoothLighting(true); // set true if model is smooth
 
     light3.setDirectional();
 
@@ -133,16 +136,17 @@ void ofApp::update(){
 //    light2.setOrientation( ofVec3f( 0, cos(ofGetElapsedTimef()) * RAD_TO_DEG, 0) );
 
     light1.setPosition(light1Position);
+    light2.setPosition(light2Position);
     light2Position.set(ofVec3f(mouseX, mouseY, light2Position.get().z));
     light3.setOrientation(light3Orientation);
 
     fbo.begin();
     ofClear(0, 0);
     ofPushStyle();
-    ofSetColor(ofColor::darkGoldenRod);
-    ofRect(0, 120, cos(ofGetElapsedTimef()*.6f) * 256 + 256, 40);
-    ofRect(0, 200, sin(ofGetElapsedTimef()*.2f) * 256 + 256, 20);
-    ofRect(0, 260, sin(ofGetElapsedTimef()*.4f) * 256 + 256, 40);
+    ofSetColor(ofColor::dodgerBlue);
+    ofRect(0, 120, cos(ofGetElapsedTimef()*.6f) * 256 + 256, 20);
+    ofRect(0, 200, sin(ofGetElapsedTimef()*.5f) * 256 + 256, 20);
+    ofRect(0, 260, sin(ofGetElapsedTimef()*.4f) * 256 + 256, 20);
     ofCircle(cos(ofGetElapsedTimef()*.6f) * 100 + 256, sin(ofGetElapsedTimef()*.2f) * 100 + 256, 20);
     ofPopStyle();
     fbo.end();
@@ -306,4 +310,10 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
 
+}
+
+//--------------------------------------------------------------
+void ofApp::onUsePhongShaderChanged(bool &_usePhong) {
+    if (_usePhong) shaderReflection.load("shaders/reflection_phong");
+    else shaderReflection.load("shaders/reflection_gouraud");
 }

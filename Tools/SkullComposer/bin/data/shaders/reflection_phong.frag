@@ -1,5 +1,5 @@
 /**
-* @author brunoimbrizi.com
+* @author Bruno Imbrizi - brunoimbrizi.com
 *
 * Based on
 * http://www.john-chapman.net/content.php?id=3
@@ -123,7 +123,7 @@ void directional(in gl_LightSourceParameters light, inout LightingResults result
 	float dotProduct = max(0.0, dot(N, lightDirection));
 
 	// diffuse
-	results.diffuse += light.diffuse * dotProduct;
+	results.diffuse += material.diffuse * light.diffuse * dotProduct;
 
 	// specular
 	if (dotProduct > 0.0) {
@@ -137,7 +137,6 @@ void directional(in gl_LightSourceParameters light, inout LightingResults result
 void main() {
 	// normal map
 	// gl_FragColor = vec4((N + vec3(1.0, 1.0, 1.0)) / 2.0, 1.0);
-
 
 	// lights
 	LightingResults results;

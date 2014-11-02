@@ -28,6 +28,8 @@ class ofApp : public ofBaseApp{
 		void initModel();
 		void initLights();
 
+		void onUsePhongShaderChanged(bool &_usePhong);
+
 		float radius;
         ofVec3f center;
         bool guiVisible = true;
@@ -51,6 +53,7 @@ class ofApp : public ofBaseApp{
 		ofParameter<int> combineEnvironmentMode;
 		ofParameter<bool> reflectionGrayscale;
 		ofParameter<bool> useFresnelShader;
+		ofParameter<bool> usePhongShader;
 		ofParameter<bool> useFlatModel;
 		ofParameter<ofColor> light1Color;
 		ofParameter<ofColor> light2Color;

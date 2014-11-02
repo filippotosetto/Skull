@@ -1,5 +1,5 @@
 /**
-* @author brunoimbrizi.com
+* @author Bruno Imbrizi - brunoimbrizi.com
 *
 * Based on
 * http://www.john-chapman.net/content.php?id=3
@@ -7,7 +7,6 @@
 */
 
 #version 120
-#extension GL_EXT_gpu_shader4 : require
 
 varying vec3 vReflect;
 
