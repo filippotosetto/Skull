@@ -1,124 +1,109 @@
 #include "SceneManager.h"
 
-SceneManager* SceneManager::__instance = 0;
-
 //--------------------------------------------------------------
-SceneManager* SceneManager::Instance() {
-    
-    if (__instance == 0) {
-        __instance = new SceneManager();
-        __instance->currScene = -1;
-    }
-    return __instance;
-    
-}
+SceneManager::SceneManager() {
 
-//--------------------------------------------------------------
-void SceneManager::init() {
-    
-    Instance();
-    
+    currScene = -1;
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::update() {
-    
-    __instance->delegate = dynamic_cast<SkullDelegate *>( __instance->get(__instance->currScene));
-    
-    get(__instance->currScene)->update();
-    
+
+    get(currScene)->update();
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::add(AbstractScene* scene) {
-    
-    __instance->scenes.push_back(scene);
+
+    scenes.push_back(scene);
     scene->setup();
-    
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::next() {
-    
-    if (__instance->currScene < __instance->getNum() - 1) navto(__instance->currScene + 1);
+
+    if (currScene < getNum() - 1) navto(currScene + 1);
     else navto(0);
-    
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::prev() {
-    
-    if (__instance->currScene > 0) navto(__instance->currScene - 1);
-    else navto(__instance->getNum() - 1);
-    
+
+    if (currScene > 0) navto(currScene - 1);
+    else navto(getNum() - 1);
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::navto(int index) {
-    
-    if (__instance->currScene == index) return;
-    
-    if (__instance->get(__instance->currScene)) {
-        __instance->nextScene = index;
-        ofAddListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneHideComplete);
-        __instance->get(__instance->currScene)->isShowing = false;
-        __instance->get(__instance->currScene)->isHiding = true;
-        __instance->get(__instance->currScene)->hide();
+
+    if (currScene == index) return;
+
+    if (get(currScene)) {
+        nextScene = index;
+        ofAddListener(get(currScene)->onHideComplete, this, &SceneManager::onSceneHideComplete);
+        get(currScene)->isShowing = false;
+        get(currScene)->isHiding = true;
+        get(currScene)->hide();
     }
     else {
-        __instance->currScene = index;
-        ofAddListener(__instance->get(__instance->currScene)->onShowComplete, __instance, &SceneManager::onSceneShowComplete);
-        __instance->get(__instance->currScene)->isShowing = true;
-        __instance->get(__instance->currScene)->show();
+        currScene = index;
+        ofAddListener(get(currScene)->onShowComplete, this, &SceneManager::onSceneShowComplete);
+        get(currScene)->isShowing = true;
+        get(currScene)->show();
     }
-    
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::navto(string name) {
-    
-    navto(__instance->get(name)->getIndex());
-    
+
+    navto(get(name)->getIndex());
+
 }
 
 //--------------------------------------------------------------
 void SceneManager::onSceneShowComplete(bool &b) {
-    
+
     //    cout << "SceneManager::onSceneShowComplete" << endl;
-    ofRemoveListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneShowComplete);
-    __instance->get(__instance->currScene)->isShowing = false;
+    ofRemoveListener(get(currScene)->onHideComplete, this, &SceneManager::onSceneShowComplete);
+    get(currScene)->isShowing = false;
 }
 
 //--------------------------------------------------------------
 void SceneManager::onSceneHideComplete(bool &b) {
-    
+
     //    cout << "SceneManager::onSceneHideComplete" << endl;
-    ofRemoveListener(__instance->get(__instance->currScene)->onHideComplete, __instance, &SceneManager::onSceneHideComplete);
-    __instance->get(__instance->currScene)->isHiding = false;
-    
-    __instance->currScene = __instance->nextScene;
-    ofAddListener(__instance->get(__instance->currScene)->onShowComplete, __instance, &SceneManager::onSceneShowComplete);
-    __instance->get(__instance->currScene)->isShowing = true;
-    __instance->get(__instance->currScene)->show();
-    
+    ofRemoveListener(get(currScene)->onHideComplete, this, &SceneManager::onSceneHideComplete);
+    get(currScene)->isHiding = false;
+
+    currScene = nextScene;
+    ofAddListener(get(currScene)->onShowComplete, this, &SceneManager::onSceneShowComplete);
+    get(currScene)->isShowing = true;
+    get(currScene)->show();
+
 }
 
 //--------------------------------------------------------------
 AbstractScene* SceneManager::get(int index) {
-    
-    for(int i = 0; i < __instance->scenes.size(); i++) {
-        if (__instance->scenes[i]->getIndex() == index) return __instance->scenes[i];
+
+    for(int i = 0; i < scenes.size(); i++) {
+        if (scenes[i]->getIndex() == index) return scenes[i];
     }
     return NULL;
-    
+
 }
 
 //--------------------------------------------------------------
 AbstractScene* SceneManager::get(string name) {
-    
-    for(int i = 0; i < __instance->scenes.size(); i++) {
-        if (__instance->scenes[i]->getName() == name) return __instance->scenes[i];
+
+    for(int i = 0; i < scenes.size(); i++) {
+        if (scenes[i]->getName() == name) return scenes[i];
     }
     return NULL;
-    
+
 }

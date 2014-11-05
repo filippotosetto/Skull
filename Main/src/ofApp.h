@@ -12,6 +12,12 @@
 #include "audio/AudioManager.h"
 #include "scene/SceneManager.h"
 
+#include "scene/abstract/AbstractScene.h"
+#include "scene/example/ExampleScene.h"
+#include "scene/circles/CirclesScene.h"
+//#include "scene/rects/RectsScene.h"
+//#include "scene/stripes/StripesScene.h"
+
 
 class ofApp : public ofBaseApp{
 
@@ -39,6 +45,9 @@ class ofApp : public ofBaseApp{
 		void saveSettings();
 
 		ofPoint lerpPoint(ofPoint start, ofPoint end, float amt);
+
+		// scenes
+		SceneManager sceneManager;
 
 		// mapping
 		ofFbo fbo;

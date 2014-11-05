@@ -5,38 +5,34 @@
 #include "../skull/SkullDelegate.h"
 
 class SceneManager {
-public:
-    static SceneManager* Instance();
-    
-    static void init();
-    static void update();
-    static void add(AbstractScene* scene);
-    static void next();
-    static void prev();
-    
-    static void navto(int index);
-    static void navto(string name);
-    
-    static AbstractScene* get(int index);
-    static AbstractScene* get(string name);
-    
-    static int getNum() { return __instance->scenes.size(); }
-    static AbstractScene* getCurrentScene() { return get(__instance->currScene); }
-    
-    static void toggleGUIVisible();
-    
-    SkullDelegate *delegate;
-    
-private:
-    static SceneManager* __instance;
-    
-    vector<AbstractScene*> scenes;
-    int currScene;
-    int nextScene;
-    bool guiVisible;
-    
-    void onSceneShowComplete(bool &b);
-    void onSceneHideComplete(bool &b);
+    public:
+        SceneManager();
+
+        void init();
+        void update();
+        void add(AbstractScene* scene);
+        void next();
+        void prev();
+
+        void navto(int index);
+        void navto(string name);
+
+         AbstractScene* get(int index);
+         AbstractScene* get(string name);
+
+        int getNum() { return scenes.size(); }
+        AbstractScene* getCurrentScene() { return get(currScene); }
+
+        void toggleGUIVisible();
+
+    private:
+        vector<AbstractScene*> scenes;
+        int currScene;
+        int nextScene;
+        bool guiVisible;
+
+        void onSceneShowComplete(bool &b);
+        void onSceneHideComplete(bool &b);
 };
 
 
