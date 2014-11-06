@@ -6,10 +6,11 @@ AbstractScene::AbstractScene() {
 }
 
 //--------------------------------------------------------------
-AbstractScene::AbstractScene(int _index, string _name) {
+AbstractScene::AbstractScene(int _index, string _name, Skull* _skull) {
 
     index = _index;
     name = _name;
+    skull = _skull;
 
 }
 
@@ -114,3 +115,8 @@ void AbstractScene::update() {
 
 }
 
+
+//--------------------------------------------------------------
+void AbstractScene::exit() {
+
+}

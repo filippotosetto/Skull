@@ -134,9 +134,9 @@ void ofApp::initDrags() {
 //--------------------------------------------------------------
 void ofApp::initScenes() {
 
-    sceneManager.add(new AbstractScene(sceneManager.getNum(), "abstract"));
-    sceneManager.add(new ExampleScene(sceneManager.getNum(), "example"));
-    sceneManager.add(new CirclesScene(sceneManager.getNum(), "circles"));
+    sceneManager.add(new AbstractScene(sceneManager.getNum(), "abstract", &skull));
+    sceneManager.add(new ExampleScene(sceneManager.getNum(), "example", &skull));
+    sceneManager.add(new CirclesScene(sceneManager.getNum(), "circles", &skull));
 //    sceneManager.add(new RectsScene(sceneManager.getNum(), "rects"));
 //    sceneManager.add(new StripesScene(sceneManager.getNum(), "stripes"));
 

@@ -1,12 +1,10 @@
 #include "../abstract/AbstractScene.h"
-#include "../../skull/SkullDelegate.h"
 
-
-class ExampleScene : public AbstractScene, public SkullDelegate {
+class ExampleScene : public AbstractScene {
 
     public:
         ExampleScene();
-        ExampleScene(int index, string name):AbstractScene(index, name) {}
+        ExampleScene(int index, string name, Skull* skull):AbstractScene(index, name, skull) {}
 
         void setup();
         void update();
@@ -15,9 +13,7 @@ class ExampleScene : public AbstractScene, public SkullDelegate {
 
         void initGUI();
 
-        ofColor getSkullColor();
-    
-    
+
     private:
         ofRectangle rect;
         float rectSize = 20.f;

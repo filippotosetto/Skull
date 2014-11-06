@@ -1,23 +1,5 @@
 <group>
-	<scene>
-		<backgroundColor>0, 0, 0, 255</backgroundColor>
-	</scene>
-	<material>
-		<emissive>86, 82, 83, 97</emissive>
-		<diffuse>69, 114, 43, 255</diffuse>
-		<specular>192, 184, 128, 255</specular>
-		<shininess>108.163</shininess>
-		<reflectivity>0.596939</reflectivity>
-	</material>
-	<render>
-		<combineLightsMode>2</combineLightsMode>
-		<combineEnvironmentMode>0</combineEnvironmentMode>
-	</render>
-	<light>
-		<light1Color>144, 195, 212, 255</light1Color>
-		<light2Color>12, 21, 87, 255</light2Color>
-	</light>
-<settings>
+	<settings>
 		<scene>
 			<backgroundColor>30, 31, 42, 255</backgroundColor>
 		<autoRotate>1</autoRotate>
@@ -34,7 +16,8 @@
 			<combineLightsMode>0</combineLightsMode>
 			<combineEnvironmentMode>2</combineEnvironmentMode>
 		<reflectionGrayscale>1</reflectionGrayscale>
-		<useFlatModel>1</useFlatModel>
+		<useFlatModel>1</useFlatModel>
+
 		</render>
 		<light>
 			<light1Color>255, 255, 255, 255</light1Color>
@@ -44,8 +27,10 @@
 			<light2Position>212, 27, 0</light2Position>
 		<light1Attenuation>1</light1Attenuation>
 			<light2Attenuation>1</light2Attenuation>
-		<light3Color>0, 0, 0, 255</light3Color>
-			<light3Orientation>0, 90, 0</light3Orientation>
+		<light3Color>0, 0, 0, 255</light3Color>
+
+			<light3Orientation>0, 90, 0</light3Orientation>
+
 		</light>
 	<fresnel>
 			<useFresnelShader>0</useFresnelShader>
@@ -55,4 +40,5 @@
 			<fresnelScale>0</fresnelScale>
 		</fresnel>
 	</settings>
-</group>
+</group>
+

@@ -115,10 +115,4 @@ void ExampleScene::onRectSlideOut(float* arg) {
     Tweenzor::removeCompleteListener(Tweenzor::getTween(&rect.width));
 
 }
-//
-
-ofColor ExampleScene::getSkullColor() {
-    return ofColor::red;
-}
-
 

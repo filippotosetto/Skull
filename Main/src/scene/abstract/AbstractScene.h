@@ -6,16 +6,18 @@
 #include "ofxTimer.h"
 #include "ofAppDefines.h"
 #include "../../audio/AudioManager.h"
+#include "../../skull/Skull.h"
 
 class AbstractScene {
     friend class SceneManager;
 
     public:
         AbstractScene();
-        AbstractScene(int _index, string _name);
+        AbstractScene(int _index, string _name, Skull* _skull);
 
         virtual void setup();
         virtual void update();
+        virtual void exit();
 
         virtual void show();
         virtual void show(float millis);
@@ -27,7 +29,6 @@ class AbstractScene {
         virtual void hideComplete();
         virtual void hideComplete(ofEventArgs &e);
 
-
         int getIndex() { return index; }
         string getName() { return name; }
 
@@ -36,15 +37,16 @@ class AbstractScene {
         ofEvent<bool> onShowComplete;
         ofEvent<bool> onHideComplete;
 
-    
+
         bool isShowing;
         bool isHiding;
-    
+
     protected:
         virtual void initGUI();
 
         int index;
         string name;
+        Skull* skull;
 
 
         ofxTimer timer;

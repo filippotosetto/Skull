@@ -66,7 +66,7 @@ class ofApp : public ofBaseApp{
 		ofParameter<bool> autoRotate;
 		ofParameter<bool> drawDebugLights;
 		ofParameter<bool> drawSkybox;
-        ofParameter<float> refractionRatio;
+        ofParameter<float> fresnelRefraction;
         ofParameter<float> fresnelBias;
         ofParameter<float> fresnelPower;
         ofParameter<float> fresnelScale;

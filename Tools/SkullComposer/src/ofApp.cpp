@@ -54,7 +54,7 @@ void ofApp::initGUI(){
 
     fresnelParams.setName("fresnel");
 	fresnelParams.add(useFresnelShader.set("useFresnelShader", false));
-    fresnelParams.add(refractionRatio.set("refractionRatio", 1.02, 0, 2.0));
+    fresnelParams.add(fresnelRefraction.set("fresnelRefraction", 1.02, 0, 2.0));
     fresnelParams.add(fresnelBias.set("fresnelBias", 0.1, 0, 1.0));
     fresnelParams.add(fresnelPower.set("fresnelPower", 2.0, 0, 5.0));
     fresnelParams.add(fresnelScale.set("fresnelScale", 1.0, 0, 1.0));
@@ -204,11 +204,14 @@ void ofApp::draw(){
     if (useFresnelShader) {
         shaderFresnel.begin();
         shaderFresnel.setUniform1i("envMap", 0);
-        shaderFresnel.setUniform1f("refractionRatio", refractionRatio);
+        shaderFresnel.setUniform1f("fresnelRefraction", fresnelRefraction);
         shaderFresnel.setUniform1f("fresnelBias", fresnelBias);
         shaderFresnel.setUniform1f("fresnelPower", fresnelPower);
         shaderFresnel.setUniform1f("fresnelScale", fresnelScale);
     }
+
+    // head bang
+//    modelFlat.setRotation(0, cos(ofGetElapsedTimef() * 8) * 20 + 15, 1, 0, 0);
 
     cam.begin();
     if (useFlatModel) modelFlat.drawFaces();

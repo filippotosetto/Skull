@@ -76,6 +76,8 @@
 			<Add directory="../../../../addons/ofxAssimpModelLoader/libs/assimp/include/Compiler" />
 			<Add directory="../../../../addons/ofxAssimpModelLoader/libs/assimp/lib" />
 			<Add directory="../../../../addons/ofxAssimpModelLoader/libs/assimp/lib/win_cb" />
+			<Add directory="../../../../addons/ofxCubeMap/libs" />
+			<Add directory="../../../../addons/ofxCubeMap/src" />
 			<Add directory="../../../../addons/ofxGui/libs" />
 			<Add directory="../../../../addons/ofxGui/src" />
 			<Add directory="../../../../addons/ofxXmlSettings/libs" />
@@ -340,6 +342,13 @@
 		<Unit filename="../../../../addons/ofxXmlSettings/src/ofxXmlSettings.h">
 			<Option virtualFolder="addons/ofxXmlSettings/src" />
 		</Unit>
+		<Unit filename="../../../../addons\ofxCubeMap\src\ofxCubeMap.cpp">
+			<Option virtualFolder="addons\ofxCubeMap\src" />
+		</Unit>
+		<Unit filename="../../../../addons\ofxCubeMap\src\ofxCubeMap.h">
+			<Option virtualFolder="addons\ofxCubeMap\src" />
+		</Unit>
+
 		<Unit filename="src/audio/AudioManager.cpp">
 			<Option virtualFolder="src/audio/" />
 		</Unit>
@@ -392,6 +401,9 @@
 			<Option virtualFolder="src/skull/" />
 		</Unit>
 		<Unit filename="src/skull/Skull.h">
+			<Option virtualFolder="src/skull/" />
+		</Unit>
+		<Unit filename="src/skull/SkullDelegate.h">
 			<Option virtualFolder="src/skull/" />
 		</Unit>
 		<Unit filename="src/ui/Drag.cpp">

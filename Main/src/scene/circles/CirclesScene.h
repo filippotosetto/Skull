@@ -14,23 +14,23 @@
 #include "ofxGui.h"
 
 class CirclesScene : public AbstractScene {
-    
+
 public:
     CirclesScene();
-    CirclesScene(int index, string name):AbstractScene(index, name) {}
-    
+    CirclesScene(int index, string name, Skull* skull):AbstractScene(index, name, skull) {}
+
     void setup();
     void update();
-    
+
     void initGUI();
-    
+
 private:
     vector<Circle> circles;
-    
+
     ofxSlider<int> numberOfBins;
     ofxSlider<int> maxCircleRadius;
     ofxToggle showFFTDebug;
-    
+
     void setupCircles();
 };
 #endif /* defined(__Main__CirclesScene__) */
