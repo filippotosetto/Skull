@@ -6,6 +6,9 @@
 #include "ofxCubeMap.h"
 #include "ofxXmlSettings.h"
 
+#define SKULLCOMPOSER_WIDTH 1024
+#define SKULLCOMPOSER_HEIGHT 768
+
 class Skull {
     public:
         Skull();
@@ -15,25 +18,6 @@ class Skull {
         void draw();
 
 		void loadSettings(string name);
-
-    private:
-        void initCamera();
-        void initShader();
-		void initCubeMap();
-		void initModel();
-		void initLights();
-
-		ofColor getColorSettings(ofxXmlSettings* settings, string name);
-		ofVec3f getPositionSettings(ofxXmlSettings* settings, string name);
-
-        // objects
-        ofShader shaderReflection;
-		ofShader shaderFresnel;
-		ofxAssimpModelLoader modelFlat;
-		ofxAssimpModelLoader modelSmooth;
-		ofLight light1;
-		ofLight light2;
-		ofLight light3;
 
         // parameters
 		ofColor emissive;
@@ -62,6 +46,26 @@ class Skull {
         float fresnelBias;
         float fresnelPower;
         float fresnelScale;
+
+    private:
+        void initCamera();
+        void initShader();
+		void initCubeMap();
+		void initModel();
+		void initLights();
+
+        // helpers
+		ofColor getColorSettings(ofxXmlSettings* settings, string name);
+		ofVec3f getPositionSettings(ofxXmlSettings* settings, string name);
+
+        // objects
+        ofShader shaderReflection;
+		ofShader shaderFresnel;
+		ofxAssimpModelLoader modelFlat;
+		ofxAssimpModelLoader modelSmooth;
+		ofLight light1;
+		ofLight light2;
+		ofLight light3;
 
         // cube map
 		ofxCubeMap cubeMap;

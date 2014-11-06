@@ -35,12 +35,14 @@ void AbstractScene::initGUI() {
 //--------------------------------------------------------------
 void AbstractScene::show() {
 
-    showComplete();
+    show(0);
 
 }
 
 //--------------------------------------------------------------
 void AbstractScene::show(float millis) {
+
+    skull->loadSettings(name);
 
     if (millis <= 0) {
         showComplete();
@@ -55,7 +57,7 @@ void AbstractScene::show(float millis) {
 //--------------------------------------------------------------
 void AbstractScene::hide() {
 
-    hideComplete();
+    hide(0);
 
 }
 

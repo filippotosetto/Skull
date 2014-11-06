@@ -13,7 +13,6 @@ void Skull::setup() {
     initCubeMap();
     initModel();
     initLights();
-    loadSettings("example");
 
 }
 
@@ -72,7 +71,9 @@ void Skull::initLights() {
 void Skull::loadSettings(string name) {
 
     ofxXmlSettings settings;
-    settings.loadFile("scenes/" + name + "/settings.xml");
+    bool loaded = settings.loadFile("scenes/" + name + "/settings.xml");
+    cout << "Skull.loadSettings: " << name << " loaded: " << loaded << endl;
+    if (!loaded) return;
 
     emissive                = getColorSettings(&settings, "group:settings:material:emissive");
     diffuse                 = getColorSettings(&settings, "group:settings:material:diffuse");
@@ -118,7 +119,9 @@ ofVec3f Skull::getPositionSettings(ofxXmlSettings* settings, string name) {
 
     string strPos = settings->getValue(name, "");
     vector<string> strings = ofSplitString(strPos, ", ");
-    return ofVec3f(ofToFloat(strings[0]), ofToFloat(strings[1]), ofToFloat(strings[2]));
+    float ratioW = SKULLCOMPOSER_WIDTH / STAGE_WIDTH;
+    float ratioH = SKULLCOMPOSER_HEIGHT / STAGE_HEIGHT;
+    return ofVec3f(ofToFloat(strings[0]) * ratioW, ofToFloat(strings[1]) * ratioH, ofToFloat(strings[2]));
 
 }
 

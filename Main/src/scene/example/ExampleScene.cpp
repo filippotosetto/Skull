@@ -74,6 +74,8 @@ void ExampleScene::show() {
     Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.5f, EASE_OUT_QUART);
     Tweenzor::addCompleteListener(Tweenzor::getTween(&rect.width), this, &ExampleScene::onRectSlideIn);
 
+    skull->emissive = ofColor(255, 255, 0);
+
 }
 
 //--------------------------------------------------------------
