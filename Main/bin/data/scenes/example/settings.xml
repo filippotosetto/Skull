@@ -10,13 +10,13 @@
 			<diffuse>45, 178, 118, 255</diffuse>
 			<specular>166, 13, 0, 255</specular>
 			<shininess>10</shininess>
-			<reflectivity>0.102041</reflectivity>
+			<reflectivity>0.0</reflectivity>
 		</material>
 		<render>
 			<combineLightsMode>0</combineLightsMode>
 			<combineEnvironmentMode>2</combineEnvironmentMode>
 			<reflectionGrayscale>1</reflectionGrayscale>
-			<useFlatModel>0</useFlatModel>
+			<useFlatModel>1</useFlatModel>
 		</render>
 		<light>
 			<light1Color>255, 255, 255, 255</light1Color>

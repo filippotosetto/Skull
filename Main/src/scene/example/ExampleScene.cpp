@@ -55,6 +55,19 @@ void ExampleScene::update() {
     rect.x = (STAGE_WIDTH - rect.width) / 2;
     rect.y = (STAGE_HEIGHT - rect.height) / 5  * 4;
 
+    skull->light1Position.z = audioData[2] * 600 - 300;
+
+    if (AudioManager::getKick()) skull->getModel()->setRotation(0, ofRandom(-20, 20), 1, 0, 0);
+
+    ofPushStyle();
+    ofSetColor(ofColor::white);
+    int w = OFX_FFT_WIDTH;
+    int h = 200;
+    int x = 20;
+    int y = ofGetHeight() - h - 20;
+    AudioManager::getFFT()->draw(x, y, w, h);
+    ofPopStyle();
+
     ofPushStyle();
     ofSetColor(ofColor::white);
     ofRect(rect);
@@ -73,8 +86,6 @@ void ExampleScene::show() {
     float tw = (STAGE_WIDTH + rect.width) / 2;
     Tweenzor::add(&rect.width, rect.width, tw, 0.f, 0.5f, EASE_OUT_QUART);
     Tweenzor::addCompleteListener(Tweenzor::getTween(&rect.width), this, &ExampleScene::onRectSlideIn);
-
-    skull->emissive = ofColor(255, 255, 0);
 
 }
 

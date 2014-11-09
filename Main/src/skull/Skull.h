@@ -18,6 +18,7 @@ class Skull {
         void draw();
 
 		void loadSettings(string name);
+		ofxAssimpModelLoader* getModel();
 
         // parameters
 		ofColor emissive;

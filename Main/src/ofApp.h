@@ -61,6 +61,7 @@ class ofApp : public ofBaseApp{
         ofxToggle drawWireframe;
         ofxToggle drawDistortion;
         ofxToggle drawSkull;
+        ofxSlider<float> audioBeatThreshold;
         bool guiVisible = true;
 
         // 3D

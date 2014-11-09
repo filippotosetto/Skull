@@ -33,6 +33,7 @@ void ofApp::update(){
 
     // update audio
     AudioManager::update();
+    AudioManager::setBeatThreshold(audioBeatThreshold);
 
     // update scene
     fbo.begin();
@@ -99,6 +100,7 @@ void ofApp::initGUI() {
     gui.add(drawWireframe.setup("drawWireframe", false));
     gui.add(drawDistortion.setup("drawDistortion", false));
     gui.add(drawSkull.setup("drawSkull", true));
+    gui.add(audioBeatThreshold.setup("audioBeatThreshold", 0.15, 0.01, 0.5));
     gui.loadFromFile(guiPath);
 
 }

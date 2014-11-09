@@ -19,8 +19,9 @@ void Skull::setup() {
 // -------------------------------------------------------------
 void Skull::initCamera() {
 
+    float ratioW = STAGE_WIDTH / SKULLCOMPOSER_WIDTH;
     cam.setVFlip(true);
-    cam.setDistance(1000);
+    cam.setDistance(1000 * ratioW);
 
 }
 
@@ -86,16 +87,16 @@ void Skull::loadSettings(string name) {
     reflectionGrayscale     = settings.getValue("group:settings:render:reflectionGrayscale", 0);
     useFlatModel            = settings.getValue("group:settings:render:useFlatModel", 1);
 
-    light1.setDiffuseColor(getColorSettings(&settings, "group:settings:light:light1Color"));
-    light2.setDiffuseColor(getColorSettings(&settings, "group:settings:light:light2Color"));
-    light3.setDiffuseColor(getColorSettings(&settings, "group:settings:light:light3Color"));
+    light1Color             = getColorSettings(&settings, "group:settings:light:light1Color");
+    light2Color             = getColorSettings(&settings, "group:settings:light:light2Color");
+    light3Color             = getColorSettings(&settings, "group:settings:light:light3Color");
 
-    light1.setPosition(getPositionSettings(&settings, "group:settings:light:light1Position"));
-    light2.setPosition(getPositionSettings(&settings, "group:settings:light:light2Position"));
-    light3.setOrientation(getPositionSettings(&settings, "group:settings:light:light3Orientation"));
+    light1Position          = getPositionSettings(&settings, "group:settings:light:light1Position");
+    light2Position          = getPositionSettings(&settings, "group:settings:light:light2Position");
+    light3Orientation       = getPositionSettings(&settings, "group:settings:light:light3Orientation");
 
-    light1.setAttenuation(settings.getValue("group:settings:light:light1Attenuation", 1));
-    light2.setAttenuation(settings.getValue("group:settings:light:light2Attenuation", 1));
+    light1Attenuation       = settings.getValue("group:settings:light:light1Attenuation", 1);
+    light2Attenuation       = settings.getValue("group:settings:light:light2Attenuation", 1);
 
     useFresnelShader        = settings.getValue("group:settings:fresnel:useFresnelShader", 0);
     fresnelRefraction       = settings.getValue("group:settings:fresnel:fresnelRefraction", 1.02);
@@ -119,14 +120,26 @@ ofVec3f Skull::getPositionSettings(ofxXmlSettings* settings, string name) {
 
     string strPos = settings->getValue(name, "");
     vector<string> strings = ofSplitString(strPos, ", ");
-    float ratioW = SKULLCOMPOSER_WIDTH / STAGE_WIDTH;
-    float ratioH = SKULLCOMPOSER_HEIGHT / STAGE_HEIGHT;
-    return ofVec3f(ofToFloat(strings[0]) * ratioW, ofToFloat(strings[1]) * ratioH, ofToFloat(strings[2]));
+//    float ratioW = STAGE_WIDTH / SKULLCOMPOSER_WIDTH;
+//    float ratioH = STAGE_HEIGHT / SKULLCOMPOSER_HEIGHT;
+    return ofVec3f(ofToFloat(strings[0]), ofToFloat(strings[1]), ofToFloat(strings[2]));
 
 }
 
 //--------------------------------------------------------------
 void Skull::update() {
+
+    light1.setDiffuseColor(ofColor(light1Color));
+    light2.setDiffuseColor(ofColor(light2Color));
+    light3.setDiffuseColor(ofColor(light3Color));
+
+    light1.setAttenuation(light1Attenuation);
+    light2.setAttenuation(light2Attenuation);
+
+    light1.setPosition(light1Position);
+    light2.setPosition(light2Position);
+    light2Position.set(ofVec3f(ofGetMouseX(), ofGetMouseY(), light2Position.z));
+    light3.setOrientation(light3Orientation);
 
 }
 
@@ -189,4 +202,10 @@ void Skull::draw() {
     ofDisableLighting();
     ofDisableDepthTest();
 
+}
+
+//--------------------------------------------------------------
+ofxAssimpModelLoader* Skull::getModel() {
+    if (useFlatModel) return &modelFlat;
+    else return &modelSmooth;
 }
